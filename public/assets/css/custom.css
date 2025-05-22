@@ -44,3 +44,25 @@
     outline: none;
     box-shadow: 0 0 0 2px rgba(242, 76, 166, 0.4); /* Focus ring */
 }
+
+
+
+.filemanager {}
+.filemanager > div,
+.filemanager > div > div {
+    height: 100%;
+    width: 100%;
+}
+.filemanager > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.required {}
+.required::after {
+    content: '*';
+    color: red;
+    margin-left: 5px;
+}

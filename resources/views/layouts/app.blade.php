@@ -12,9 +12,10 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css'])
 
         <link href="{{ url('/assets/css/fontawesome.css') }}" rel="stylesheet">
+        <link href="{{ url('/assets/css/custom.css') }}" rel="stylesheet">
 
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
@@ -33,9 +34,11 @@
                 @endisset
             </div>
             <!-- Page Content -->
-            <main class="flex-1 overflow-hidden">
+            <main class="flex-1 overflow-auto">
                 {{ $slot }}
             </main>
         </div>
+
+        @livewireScripts
     </body>
 </html>

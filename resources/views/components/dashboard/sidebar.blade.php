@@ -12,9 +12,21 @@
 
         @if(auth()->user()->role() === 'administrator')
             <li>
-                <a href="{{ route('users.index') }}"
+                <a href="{{ route('filemanager') }}"
+                   class="block bg-blue-50 text-gray-700 hover:bg-blue-100 px-4 py-2 rounded transition-colors duration-200">
+                    <i class="fa-regular fa-folder w-[24px]"></i> File Manager
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.index') }}"
                    class="block bg-blue-50 text-gray-700 hover:bg-blue-100 px-4 py-2 rounded transition-colors duration-200">
                     <i class="fa-regular fa-users w-[24px]"></i> Users
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('product.index') }}"
+                   class="block bg-blue-50 text-gray-700 hover:bg-blue-100 px-4 py-2 rounded transition-colors duration-200">
+                    <i class="fa-light fa-cubes w-[24px]"></i> Products
                 </a>
             </li>
         @endif
