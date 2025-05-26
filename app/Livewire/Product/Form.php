@@ -53,15 +53,15 @@ class Form extends Component
         $product = $this->product;
 
         $data = [
-            'name' => $this->name,
-            'value' => $this->value,
-            'type' => $this->type,
-            'category' => $this->category,
-            'year' => $this->year,
-            'amount' => $this->amount,
-            'commission' => $this->commission,
-            'image' => $this->image,
-            'description' => $this->description,
+            'name'          => $this->name,
+            'value'         => $this->value,
+            'type'          => $this->type,
+            'category'      => $this->category,
+            'year'          => $this->year,
+            'amount'        => $this->amount,
+            'commission'    => $this->commission,
+            'image'         => $this->image,
+            'description'   => $this->description,
         ];
 
         $response = app(UserRoleMiddleware::class)->handle(request(), function($request) use ($data, $product){
@@ -76,7 +76,7 @@ class Form extends Component
             }
         }, role: $role);
 
-        if($response->isSuccessful()){
+        if($this->form == 'add' && $response->isSuccessful()){
             if(empty($product)){
                 $product_id = $response->getData()->id;
                 $this->resetExcept(['values', 'types', 'categories']);

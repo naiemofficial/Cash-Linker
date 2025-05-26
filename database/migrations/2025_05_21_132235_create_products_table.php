@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('amount')->nullable();
             $table->integer('commission')->nullable();
             $table->string('image')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

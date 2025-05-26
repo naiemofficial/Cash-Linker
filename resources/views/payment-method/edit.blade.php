@@ -1,13 +1,13 @@
-<x-dashboard.index title="Edit Product">
+<x-dashboard.index title="Edit Payment Method">
     <x-slot:headerRight>
-        <livewire:product.button form="edit" />
+        <livewire:payment-method.button form="edit" :$statuses status="{{ $paymentMethod->status }}" />
     </x-slot:headerRight>
 
     <div class="h-full w-full rounded-lg relative">
         <livewire:message.index />
 
         <div class="p-5 h-full overflow-auto">
-            <livewire:product.form form="edit" :$values :$categories :$types :$product />
+            <livewire:payment-method.form form="edit" :$paymentMethod />
         </div>
     </div>
 </x-dashboard.index>

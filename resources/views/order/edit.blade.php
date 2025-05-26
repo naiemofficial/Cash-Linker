@@ -7,7 +7,7 @@
         <livewire:message.index />
 
         <div class="p-5 h-full overflow-auto">
-            <livewire:product.form form="edit" :$values :$categories :$types :$product />
+            <livewire:product.form :$values :$categories :$types :$product />
         </div>
     </div>
 </x-dashboard.index>
