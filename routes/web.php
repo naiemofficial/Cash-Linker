@@ -29,12 +29,20 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
     Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
 
     Route::get('/delivery-methods', [DeliveryMethodController::class, 'index'])->name('delivery-method.index');
+    Route::get('/delivery-methods/trash', [DeliveryMethodController::class, 'index'])->name('delivery-method.index.trash');
     Route::get('/delivery-method/create', [DeliveryMethodController::class, 'create'])->name('delivery-method.create');
     Route::get('/delivery-method/edit/{deliveryMethod}', [DeliveryMethodController::class, 'edit'])->name('delivery-method.edit');
+    Route::get('/delivery-method/delete/{deliveryMethod}/{redirect?}', [DeliveryMethodController::class, 'destroy'])->name('delivery-method.delete');
+    Route::get('/delivery-method/delete/permanent/{deliveryMethod}/{redirect?}', [DeliveryMethodController::class, 'destroyPermanent'])->name('delivery-method.deletePermanent');
+    Route::get('/delivery-method/restore/{deliveryMethod}/{redirect?}', [DeliveryMethodController::class, 'restore'])->name('delivery-method.restore');
 
     Route::get('/payment-methods', [PaymentMethodController::class, 'index'])->name('payment-method.index');
+    Route::get('/payment-methods/trash', [PaymentMethodController::class, 'index'])->name('payment-method.index.trash');
     Route::get('/payment-method/create', [PaymentMethodController::class, 'create'])->name('payment-method.create');
     Route::get('/payment-method/edit/{paymentMethod}', [PaymentMethodController::class, 'edit'])->name('payment-method.edit');
+    Route::get('/payment-method/delete/{paymentMethod}/{redirect?}', [PaymentMethodController::class, 'destroy'])->name('payment-method.delete');
+    Route::get('/payment-method/delete/permanent/{paymentMethod}/{redirect?}', [PaymentMethodController::class, 'destroyPermanent'])->name('payment-method.deletePermanent');
+    Route::get('/payment-method/restore/{paymentMethod}/{redirect?}', [PaymentMethodController::class, 'restore'])->name('payment-method.restore');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');

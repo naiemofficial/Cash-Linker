@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('logo');
             $table->string('name');
-            $table->integer('account_no');
-            $table->string('account_nane');
+            $table->string('account_no');
+            $table->string('account_name');
             $table->enum('type', ['mfs', 'bank'])->default('mfs');
-            $table->enum('category', ['personal', 'agent', 'business'])->default('personal');
+            $table->enum('category', ['personal', 'agent', 'merchant', 'business'])->default('personal');
             $table->string('swift_code')->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');

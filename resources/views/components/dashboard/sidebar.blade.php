@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="bg-white shadow-sm sm:rounded-lg w-[250px]">
+<div class="bg-white shadow-sm sm:rounded-lg w-[250px] min-w-[250px] overflow-y-auto">
     <ul class="p-4 space-y-2 text-sm font-medium">
         <li>
             <a href="{{ route('dashboard') }}"

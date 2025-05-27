@@ -13,18 +13,30 @@ class Form extends Component
     public $form = 'add';
     public $paymentMethod = null;
 
+    public $logo;
     public $name;
-    public $cost;
-    public $details;
+    public $account_no;
+    public $account_name;
+    public $types = [];
+    public $type;
+    public $categories = [];
+    public $category;
+    public $swift_code;
+    public $description;
 
 
 
     public function mount(){
         $paymentMethod = $this->paymentMethod;
         if(!empty($paymentMethod)){
+            $this->logo         = $paymentMethod->logo;
             $this->name         = $paymentMethod->name;
-            $this->cost         = $paymentMethod->cost;
-            $this->details      = $paymentMethod->details;
+            $this->account_no   = $paymentMethod->account_no;
+            $this->account_name = $paymentMethod->account_name;
+            $this->type         = $paymentMethod->type;
+            $this->category     = $paymentMethod->category;
+            $this->swift_code   = $paymentMethod->swift_code;
+            $this->description  = $paymentMethod->description;
         }
     }
 
@@ -35,15 +47,19 @@ class Form extends Component
         $paymentMethod = $this->paymentMethod;
 
         $data = [
-            'name'      => $this->name,
-            'cost'      => $this->cost,
-            'details'   => $this->details,
+            'logo'          => $this->logo,
+            'name'          => $this->name,
+            'account_no'    => $this->account_no,
+            'account_name'  => $this->account_name,
+            'type'          => $this->type,
+            'category'      => $this->category,
+            'swift_code'    => $this->swift_code,
+            'description'   => $this->description,
         ];
 
         if(!empty($status)){
             $data['status'] = $status;
         }
-
 
         $response = app(UserRoleMiddleware::class)->handle(request(), function($request) use ($data, $paymentMethod){
             $PaymentMethodController = app(PaymentMethodController::class);
@@ -57,12 +73,11 @@ class Form extends Component
             }
         }, role: $role);
 
-
         if($this->form == 'add' && $response->isSuccessful()){
             if(empty($paymentMethod)){
                 $paymentMethod_id = $response->getData()->id;
                 $this->reset();
-                $this->redirect(route('payment-method.index', $paymentMethod_id));
+                $this->redirect(route('payment-method.edit', $paymentMethod_id));
             }
         }
 

@@ -7,7 +7,7 @@
         <livewire:message.index />
 
         <div class="p-5 h-full overflow-auto">
-            <livewire:payment-method.form form="edit" :$paymentMethod />
+            <livewire:payment-method.form form="edit" :$paymentMethod :$types :$categories />
         </div>
     </div>
 </x-dashboard.index>

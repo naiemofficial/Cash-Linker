@@ -62,7 +62,7 @@ class Form extends Component
             if(empty($deliveryMethod)){
                 $deliveryMethod_id = $response->getData()->id;
                 $this->reset();
-                $this->redirect(route('delivery-method.index', $deliveryMethod_id));
+                $this->redirect(route('delivery-method.edit', $deliveryMethod_id));
             }
         }
 

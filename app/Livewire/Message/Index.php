@@ -23,6 +23,19 @@ class Index extends Component
         ]);
     }
 
+    public static function refresh($response, $className = null){
+        Response::visualize('static-message', $response, [
+            'session-flash' => true,
+            'template' => [
+                'key' => 'textOnly',
+                'wrapper' => true,
+                'key-based-color' => true,
+                'class' => 'line-clamp-1 px-2 py-0.5 border-[1px] border-solid rounded-[20px] text-center max-w-[500px]'
+            ],
+            'classForce' => true
+        ]);
+    }
+
     public function render()
     {
         return view('livewire.message.index', [

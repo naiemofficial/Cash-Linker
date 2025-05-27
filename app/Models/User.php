@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -51,5 +52,15 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(UserRole::class, 'user_role_id')->first()->name;
+    }
+
+
+    public function orders()
+    {
+        if ($this->role() === 'administrator') {
+            return Order::query()->orderBy('created_at', 'desc');
+        }
+
+        return $this->hasMany(Order::class)->orderBy('created_at', 'desc');
     }
 }

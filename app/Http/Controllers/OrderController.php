@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Database;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -24,7 +25,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('order.index', [
-            'orders' => Order::all()
+            'orders' => Auth::user()->orders()->paginate(5)
         ]);
     }
 

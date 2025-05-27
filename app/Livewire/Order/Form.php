@@ -69,7 +69,7 @@ class Form extends Component
             if(empty($order)){
                 $order_id = $response->getData()->id;
                 $this->resetExcept(['values', 'types', 'categories']);
-                $this->redirect(route('order.index', $order_id));
+                $this->redirect(route('order.edit', $order_id));
             }
         }
 

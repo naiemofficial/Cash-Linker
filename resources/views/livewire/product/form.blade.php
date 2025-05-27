@@ -1,6 +1,15 @@
 <form wire:submit.prevent="submit">
     <div class="grid gap-5 sm:grid-cols-4 sm:gap-6">
-        <div class="sm:col-span-4">
+        <div class="sm:col-span-1">
+            <label for="origin" class="block mb-2 text-sm font-medium text-gray-900 required">Currency Origin</label>
+            <select wire:model="origin" id="origin" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                <option value="">Select country</option>
+                @foreach($origins as $origin)
+                    <option value="{{ $origin }}">{{ $origin }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="sm:col-span-3">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 required">Product Name</label>
             <input wire:model="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type product name" required="">
         </div>
@@ -49,11 +58,11 @@
             <input wire:model="commission" type="number" id="commission" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="৳5" required="">
         </div>
         <div class="sm:col-span-2 h-[300px]">
-            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900">Image URL</label>
+            <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image URL</label>
             <input wire:model.live="image" type="url" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="https://" required="">
             <div class="border-[2px] border-dashed rounded-xl w-full h-[230px] mt-2 p-5 flex items-center justify-center bg-gray-50">
                 @if(filter_var($image, FILTER_VALIDATE_URL) && preg_match('/\.(jpg|jpeg|png|gif|webp)$/i', $image))
-                    <img src="{{ $image }}" class="max-h-[300px] rounded-lg" />
+                    <img src="{{ $image }}" class="max-h-[100%] rounded-lg" />
                 @else
                     <i class="fa-duotone fa-solid fa-money-bill text-9xl text-gray-300"></i>
                 @endif

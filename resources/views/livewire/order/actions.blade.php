@@ -1,4 +1,4 @@
-<div class="inline-flex items-center mt-2">
+<div class="inline-flex items-center">
     {{--<span wire:loading wire:target="delete, restore" class="inline-flex mr-2">
         <i class="inline-flex fas fa-circle-notch fa-spin"></i>
     </span>--}}

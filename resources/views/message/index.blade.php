@@ -10,6 +10,7 @@
     $template_source = "message.$template_key.";
 @endphp
 
+
 @if(!empty($messageLocation) && ($messageLocation == $className || $messageLocation == $__CLASS__))
     @php
         $delays = [
@@ -19,6 +20,8 @@
 
         $delayBetween = $delays[$template_key];
     @endphp
+
+
     @foreach($messages as $index => $data)
         @include($template_source . $data['key'], [
             'message'   => $data['message'],

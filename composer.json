@@ -11,7 +11,9 @@
         "laravel/tinker": "^2.10.1",
         "livewire-filemanager/filemanager": "^0.1.38",
         "livewire/livewire": "^3.6",
-        "wire-elements/modal": "^2.0"
+        "symfony/var-dumper": "^7.2.0",
+        "wire-elements/modal": "^2.0",
+        "woodsandwalker/laravel-countries": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

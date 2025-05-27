@@ -1,4 +1,15 @@
-<div>
+<div class="inline-flex flex-row">
+    <form wire:submit.prevent="submit">
+        <div class="inline-flex flex-row items-center content-center space-x-1 mr-2">
+            <label for="status" class="block text-sm font-medium text-gray-900">Status</label>
+            <select wire:model="status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-[130px] p-2.5">
+                @foreach($statuses as $status)
+                    <option value="{{ $status }}">{{ ucwords(str_replace('-', ' ', ($status == 'NA' ? 'Not Available' : $status))) }}</option>
+                @endforeach
+            </select>
+        </div>
+    </form>
+
     <button
         wire:click="submit"
         wire:loading.attr="disabled"

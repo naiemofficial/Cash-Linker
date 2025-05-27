@@ -141,8 +141,12 @@ class Response {
          *
          *
          * */
-        if(!class_exists($className)){
-            throw new \InvalidArgumentException("Class {$className} not found");
+
+        $classNameForce = isset($preference['classForce']) ? boolval($preference['classForce']) : false;
+        if(!$classNameForce){
+            if(!class_exists($className)){
+                throw new \InvalidArgumentException("Class {$className} not found");
+            }
         }
 
 

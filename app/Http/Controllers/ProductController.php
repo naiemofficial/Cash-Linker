@@ -13,9 +13,15 @@ class ProductController extends Controller
     {
         $Product = app(Product::class);
         $enums = [
-            'values'    => Database::getEnum($Product, 'value'),
-            'types'     => Database::getEnum($Product, 'type'),
-            'categories' => Database::getEnum($Product, 'category'),
+            'origins'       => Database::getEnum($Product, 'origin'),
+            'values'        => Database::getEnum($Product, 'value'),
+            'types'         => Database::getEnum($Product, 'type'),
+            'categories'    => Database::getEnum($Product, 'category'),
+            'statuses'      => Database::getEnum($Product, 'status'),
+            'default'   => [
+                'origin'    => Database::getEnum($Product, 'origin', ['default' => true]),
+                'status'    => Database::getEnum($Product, 'status', ['default' => true]),
+            ],
         ];
         return $enums;
     }
@@ -27,7 +33,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('product.index', [
-            'products' => Product::all()
+            'products' => Product::orderBy('created_at', 'desc')->paginate(15)
         ]);
     }
 
@@ -46,15 +52,16 @@ class ProductController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'value' => ['required', 'numeric'],
-                'category'  => ['required', 'string', 'max:255'],
-                'type'  => ['required', 'string', 'max:255'],
-                'year'  => ['nullable', 'numeric'],
-                'amount' => ['required', 'numeric'],
-                'commission' => ['required', 'numeric'],
-                'image' => ['nullable', 'url'],
-                'description' => ['nullable', 'string'],
+                'status'        => ['required', 'string'],
+                'name'          => ['required', 'string', 'max:255'],
+                'value'         => ['required', 'numeric'],
+                'category'      => ['required', 'string', 'max:255'],
+                'type'          => ['required', 'string', 'max:255'],
+                'year'          => ['nullable', 'numeric'],
+                'amount'        => ['required', 'numeric'],
+                'commission'    => ['required', 'numeric'],
+                'image'         => ['nullable', 'url'],
+                'description'   => ['nullable', 'string'],
             ]);
 
             $product = Product::create($validated);
@@ -65,7 +72,7 @@ class ProductController extends Controller
             ], 201);
 
         } catch (\Exception $error){
-            return response()->json(['error' => $error->getMessage()]);
+            return response()->json(['error' => $error->getMessage()], 400);
         }
 
     }
@@ -96,17 +103,20 @@ class ProductController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'value' => ['required', 'numeric'],
-                'category'  => ['required', 'string', 'max:255'],
-                'type'  => ['required', 'string', 'max:255'],
-                'year'  => ['nullable', 'numeric'],
-                'amount' => ['required', 'numeric'],
-                'commission' => ['required', 'numeric'],
-                'image' => ['nullable', 'url'],
-                'description' => ['nullable', 'string'],
+                'status'        => ['required', 'string'],
+                'origin'        => ['required', 'string'],
+                'name'          => ['required', 'string', 'max:255'],
+                'value'         => ['required', 'numeric'],
+                'category'      => ['required', 'string', 'max:255'],
+                'type'          => ['required', 'string', 'max:255'],
+                'year'          => ['nullable', 'numeric'],
+                'amount'        => ['required', 'numeric'],
+                'commission'    => ['required', 'numeric'],
+                'image'         => ['nullable', 'url'],
+                'description'   => ['nullable', 'string'],
             ]);
 
+            // dd($validated);
 
             $product->update($validated);
 
@@ -114,7 +124,7 @@ class ProductController extends Controller
                 'success' => 'Product updated successfully',
             ], 200);
         } catch (\Exception $error){
-            return response()->json(['error' => $error->getMessage()]);
+            return response()->json(['error' => $error->getMessage()], 400);
         }
     }
 

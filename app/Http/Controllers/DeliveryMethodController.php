@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Database;
+use App\Livewire\Message\Index as MessageIndex;
 use App\Models\DeliveryMethod;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,9 @@ class DeliveryMethodController extends Controller
 {
     public function db_enums()
     {
-        $DeliveryMethod = app(DeliveryMethod::class);
+        $deliveryMethod = app(DeliveryMethod::class);
         $enums = [
-            'statuses'    => Database::getEnum($DeliveryMethod, 'status'),
+            'statuses'    => Database::getEnum($deliveryMethod, 'status'),
         ];
         return $enums;
     }
@@ -23,8 +24,13 @@ class DeliveryMethodController extends Controller
      */
     public function index()
     {
+        $trashPage = (request()->segment(3) === 'trash');
+        $query = $trashPage ? DeliveryMethod::onlyTrashed() : DeliveryMethod::query();
+
         return view('delivery-method.index', [
-            'deliveryMethods' => DeliveryMethod::all()
+            'deliveryMethods' => $query->orderBy('created_at', 'desc')->paginate(15),
+            'trash_count' => DeliveryMethod::onlyTrashed()->count(),
+            'trashPage' => $trashPage,
         ]);
     }
 
@@ -49,15 +55,15 @@ class DeliveryMethodController extends Controller
             ]);
 
 
-            $deliveryMethod = DeliveryMethod::create($validated);
+            $DeliveryMethod = DeliveryMethod::create($validated);
 
             return response()->json([
                 'success' => 'Delivery method created successfully',
-                'id' => $deliveryMethod->id,
+                'id' => $DeliveryMethod->id,
             ], 201);
 
         } catch (\Exception $error){
-            return response()->json(['error' => $error->getMessage()]);
+            return response()->json(['error' => $error->getMessage()], 400);
         }
     }
 
@@ -100,15 +106,76 @@ class DeliveryMethodController extends Controller
                 'success' => 'Delivery method updated successfully',
             ], 200);
         } catch (\Exception $error){
-            return response()->json(['error' => $error->getMessage()]);
+            return response()->json(['error' => $error->getMessage()], 400);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DeliveryMethod $deliveryMethod)
+    public function destroy(DeliveryMethod $deliveryMethod, bool $redirect = false)
     {
-        //
+        try {
+            $deliveryMethod->delete();
+            $message = [ 'pending' => 'Delivery method moved to trash' ];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('delivery-method.index');
+            } else {
+                return response()->json($message, 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroyPermanent(int $deliveryMethodID, bool $redirect = false)
+    {
+        try {
+            $deliveryMethod = DeliveryMethod::withTrashed()->findOrFail($deliveryMethodID);
+            $deliveryMethod->forceDelete();
+            $message = [ 'success' => 'Delivery method deleted successfully' ];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('delivery-method.index.trash');
+            } else {
+                return response()->json($message, 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore(int $deliveryMethodID, bool $redirect = false)
+    {
+        try {
+            $deliveryMethod = DeliveryMethod::withTrashed()->findOrFail($deliveryMethodID);
+            $deliveryMethod->restore();
+            $message = ['success' => 'Delivery method restored successfully'];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('delivery-method.index.trash');
+            } else {
+                return response()->json($message, 200);
+            }
+        } catch (\Exception $e) {
+            $message = [ 'error' => $e->getMessage() ];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('delivery-method.index.trash');
+            } else {
+                return response()->json($message, 500);
+            }
+        }
     }
 }

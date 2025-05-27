@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between gap-5">
+        <div class="flex justify-between items-center gap-5">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __($title ?? 'Dashboard') }}
             </h2>
@@ -16,7 +16,9 @@
                 @include('components.dashboard.sidebar')
 
                 <!-- Content -->
-                <div class="flex-1 bg-white shadow-sm sm:rounded-lg">
+                <div class="flex-1 flex bg-white shadow-sm sm:rounded-lg relative">
+                    <x-message />
+
                     {{ $slot }}
                 </div>
             </div>

@@ -15,6 +15,10 @@ class Form extends Component
     public $form = 'add';
     public $product = null;
 
+
+    public $default = [];
+    public $origins = [];
+    public $origin;
     public $name;
     public $values = [];
     public $value;
@@ -27,12 +31,14 @@ class Form extends Component
     public $commission;
     public $image;
     public $description;
+    public $status;
 
 
 
     public function mount(){
         $product = $this->product;
         if(!empty($product)){
+            $this->origin       = $product->origin;
             $this->name         = $product->name;
             $this->value        = $product->value;
             $this->category     = $product->category;
@@ -42,17 +48,21 @@ class Form extends Component
             $this->commission   = $product->commission;
             $this->image        = $product->image;
             $this->description  = $product->description;
+            $this->status       = $product->status;
+        } else {
+            $this->origin = $this->default['origin'] ?? '';
         }
     }
 
 
 
     #[On('product-form-submitted')]
-    public function submit(){
+    public function submit($status){
         $role = Auth::user()->role();
         $product = $this->product;
 
         $data = [
+            'origin'        => $this->origin,
             'name'          => $this->name,
             'value'         => $this->value,
             'type'          => $this->type,
@@ -62,7 +72,9 @@ class Form extends Component
             'commission'    => $this->commission,
             'image'         => $this->image,
             'description'   => $this->description,
+            'status'        => $status,
         ];
+
 
         $response = app(UserRoleMiddleware::class)->handle(request(), function($request) use ($data, $product){
             $ProductController = app(ProductController::class);
@@ -80,7 +92,7 @@ class Form extends Component
             if(empty($product)){
                 $product_id = $response->getData()->id;
                 $this->resetExcept(['values', 'types', 'categories']);
-                $this->redirect(route('product.index', $product_id));
+                $this->redirect(route('product.edit', $product_id));
             }
         }
 
