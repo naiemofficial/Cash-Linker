@@ -16,7 +16,7 @@
                 @include('components.dashboard.sidebar')
 
                 <!-- Content -->
-                <div class="flex-1 flex bg-white shadow-sm sm:rounded-lg relative">
+                <div class="w-3/4 flex-1 flex bg-white shadow-sm sm:rounded-lg relative">
                     <x-message />
 
                     {{ $slot }}

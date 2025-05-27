@@ -1,5 +1,17 @@
 <x-dashboard.index title="Products">
     <x-slot:headerRight>
+        @if($trash_count > 0 || $trashPage)
+            <a
+                href="{{ route('product.index.trash') }}"
+                class="mr-2 group {{ $trashPage ? 'bg-red-600 text-white hover:bg-red-600 hover:text-white' : '' }} w-[110px] border border-red-600 text-red-600 px-4 h-[32px] hover:bg-[#ffeef5] focus:outline-none focus:ring-2 focus:ring-red-500 text-xs cursor-pointer disabled:cursor-not-allowed transition-all duration-200 relative rounded-md inline-flex items-center justify-center gap-1"
+            >
+                <i class="fas fa-trash-alt"></i> Trash
+                <span class="{{ $trash_count >= 10 ? 'rounded-sm px-[5px]' : 'rounded-full' }} top-[-5px] right-[-5px] inline-flex items-center justify-center bg-[#ffd3e5] text-red-600 h-[18px] min-w-[18px] transition-colors duration-200">
+                {{ $trash_count }}
+            </span>
+            </a>
+        @endif
+
         <a href="{{ route('product.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
             <i class="fas fa-plus mr-2"></i> Add Product
         </a>
@@ -7,7 +19,7 @@
 
     <div class="flex-1 w-full relative overflow-auto  {{ $products->hasPages() ? 'pb-[38px]' : '' }}">
         @if($products->count() < 1)
-            <x-notfound icon="fa-light fa-cubes" text="Products not found" />
+            <x-notfound icon="fa-light fa-cubes" text="Products not found" :$trashPage />
         @else
             <table class="min-w-full leading-normal">
                 <thead class="sticky top-0">

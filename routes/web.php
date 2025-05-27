@@ -25,8 +25,12 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
     })->name('filemanager');
 
     Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/trash', [ProductController::class, 'index'])->name('product.index.trash');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/delete/{product}/{redirect?}', [ProductController::class, 'destroy'])->name('product.delete');
+    Route::get('/product/delete/permanent/{product}/{redirect?}', [ProductController::class, 'destroyPermanent'])->name('product.deletePermanent');
+    Route::get('/product/restore/{product}/{redirect?}', [ProductController::class, 'restore'])->name('product.restore');
 
     Route::get('/delivery-methods', [DeliveryMethodController::class, 'index'])->name('delivery-method.index');
     Route::get('/delivery-methods/trash', [DeliveryMethodController::class, 'index'])->name('delivery-method.index.trash');
@@ -45,8 +49,12 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
     Route::get('/payment-method/restore/{paymentMethod}/{redirect?}', [PaymentMethodController::class, 'restore'])->name('payment-method.restore');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/orders/trash', [OrderController::class, 'index'])->name('order.index.trash');
     Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
     Route::get('/order/edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::get('/order/delete/{order}/{redirect?}', [OrderController::class, 'destroy'])->name('order.delete');
+    Route::get('/order/delete/permanent/{order}/{redirect?}', [OrderController::class, 'destroyPermanent'])->name('order.deletePermanent');
+    Route::get('/order/restore/{order}/{redirect?}', [OrderController::class, 'restore'])->name('order.restore');
 });
 
 Route::middleware('auth')->group(function () {

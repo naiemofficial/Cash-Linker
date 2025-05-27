@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Database;
+use App\Livewire\Message\Index as MessageIndex;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -32,8 +34,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $trashPage = (request()->segment(3) === 'trash');
+        $query = $trashPage ? Product::onlyTrashed() : Product::query();
+
         return view('product.index', [
-            'products' => Product::orderBy('created_at', 'desc')->paginate(15)
+            'products' => $query->orderBy('created_at', 'desc')->paginate(15),
+            'trash_count' => Product::onlyTrashed()->count(),
+            'trashPage' => $trashPage,
         ]);
     }
 
@@ -131,8 +138,70 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, bool $redirect = false)
     {
-        //
+        try {
+            $product->delete();
+            $message = [ 'pending' => 'Product moved to trash' ];
+
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('product.index');
+            } else {
+                return response()->json($message, 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroyPermanent(int $productID, bool $redirect = false)
+    {
+        try {
+            $product = Product::withTrashed()->findOrFail($productID);
+            $product->forceDelete();
+            $message = [ 'success' => 'Product deleted successfully' ];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('product.index.trash');
+            } else {
+                return response()->json($message, 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore(int $productID, bool $redirect = false)
+    {
+        try {
+            $product = Product::withTrashed()->findOrFail($productID);
+            $product->restore();
+            $message = ['success' => 'Product restored successfully'];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('product.index.trash');
+            } else {
+                return response()->json($message, 200);
+            }
+        } catch (\Exception $e) {
+            $message = [ 'error' => $e->getMessage() ];
+            if($redirect){
+                MessageIndex::refresh($message);
+                return redirect()->route('product.index.trash');
+            } else {
+                return response()->json($message, 500);
+            }
+        }
     }
 }

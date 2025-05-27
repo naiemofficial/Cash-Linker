@@ -55,12 +55,18 @@ class User extends Authenticatable
     }
 
 
-    public function orders()
+    public function orders($props = [])
     {
-        if ($this->role() === 'administrator') {
-            return Order::query()->orderBy('created_at', 'desc');
+        $orders = $this->role() === 'administrator' ? Order::query() : $this->hasMany(Order::class);
+
+        if(isset($props['withTrashed']) && boolval($props['withTrashed']) === true){
+            $orders = $orders->withTrashed();
+        }
+        if(isset($props['onlyTrashed']) && boolval($props['onlyTrashed']) === true){
+            $orders = $orders->onlyTrashed();
         }
 
-        return $this->hasMany(Order::class)->orderBy('created_at', 'desc');
+        return $orders->orderBy('created_at', 'desc');
     }
+
 }
