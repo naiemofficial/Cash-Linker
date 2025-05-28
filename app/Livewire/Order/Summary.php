@@ -69,6 +69,7 @@ class Summary extends Component
 
     public function selectDeliveryMethod($deliveryMethod){
         $this->deliveryCost = DeliveryMethod::find($deliveryMethod)->cost;
+        $this->extracted();
     }
 
     public function render()
@@ -89,6 +90,9 @@ class Summary extends Component
 
         $this->deliveryMethods = DeliveryMethod::all();
 
-        $this->dispatch('refresh-cart-Total');
+        $this->dispatch('refresh-cart-Total', [
+            'deliveryMethod' => $this->deliveryMethod,
+            'deliveryCost' => $this->deliveryCost
+        ]);
     }
 }

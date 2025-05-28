@@ -1,14 +1,20 @@
 <div class="flex flex-row flex-row justify-between items-center gap-5"> <!-- bg-gray-100 px-6 py-3  -->
     <div class="flex flex-col">
         <!-- Order Summary -->
-        <div class="flex flex-row items-center gap-5">
-            <div class="flex justify-between gap-1">
-                <span class="text-sm text-gray-600">Total money</span>
-                <span class="text-sm font-medium text-gray-900">{{ $totalMoney }}</span>
+        <div class="flex flex-row items-end gap-5">
+            <div class="flex flex-row items-center gap-5">
+                <div class="flex items-center gap-1">
+                    <span class="text-sm text-gray-600">Total money:</span>
+                    <span class="text-sm font-medium text-gray-900">{{ $totalMoney }}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <span class="text-sm text-gray-600">Extra Cost:</span>
+                    <span class="text-sm font-medium text-gray-900">{{ $extraCost }}</span>
+                </div>
             </div>
-            <div class="flex justify-between gap-1">
-                <span class="text-sm text-gray-600">Extra Cost</span>
-                <span class="text-sm font-medium text-gray-900">{{ $extraCost }}</span>
+            <div class="flex items-center gap-1">
+                <span class="text-sm text-gray-600">Delivery charge:</span>
+                <span class="text-sm font-medium text-gray-900">{{ number_format(empty($deliveryMethod) ? 0.00 : $deliveryMethod->cost, 2, '.', ',') }}</span>
             </div>
         </div>
     </div>
@@ -19,7 +25,7 @@
             <span class="text-lg font-bold text-blue-600">{{ $total }}</span>
         </div>
         <!-- Checkout -->
-        <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+        <button {{ empty($deliveryMethod) ? 'disabled' : '' }} class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:bg-gray-500">
             <i class="fa-light fa-cart-shopping-fast mr-2"></i> Checkout
         </button>
         <!-- Cart -->
