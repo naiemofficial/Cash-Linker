@@ -27,7 +27,7 @@ class Form extends Component
     public $types = [];
     public $type;
     public $year;
-    public $amount;
+    public $price;
     public $commission;
     public $image;
     public $description;
@@ -44,7 +44,7 @@ class Form extends Component
             $this->category     = $product->category;
             $this->type         = $product->type;
             $this->year         = $product->year;
-            $this->amount       = $product->amount;
+            $this->price       = $product->price;
             $this->commission   = $product->commission;
             $this->image        = $product->image;
             $this->description  = $product->description;
@@ -68,7 +68,7 @@ class Form extends Component
             'type'          => $this->type,
             'category'      => $this->category,
             'year'          => $this->year,
-            'amount'        => $this->amount,
+            'price'        => $this->price,
             'commission'    => $this->commission,
             'image'         => $this->image,
             'description'   => $this->description,

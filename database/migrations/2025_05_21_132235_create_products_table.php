@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('category', ['regular', 'memorial'])->default('regular');
             $table->enum('type', ['note', 'bundle', 'penny', 'penny-stack'])->default('note');
             $table->integer('year')->nullable();
-            $table->integer('amount')->nullable();
+            $table->integer('price')->nullable();
             $table->integer('commission')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();

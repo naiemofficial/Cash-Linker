@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Database;
 use App\Livewire\Message\Index as MessageIndex;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,7 +44,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create', $this->db_enums());
+        return view('order.create', [
+            'products' => Product::orderBy('created_at', 'desc')->paginate(5),
+            ...$this->db_enums()
+        ]);
     }
 
     /**

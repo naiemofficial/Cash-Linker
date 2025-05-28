@@ -78,7 +78,7 @@
                                 {{ ucwords(str_replace('-', ' ', $product->type)) }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
-                                {{ $product->amount }}
+                                {{ $product->price }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
                                 {{ $product->commission }}

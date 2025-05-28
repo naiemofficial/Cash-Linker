@@ -18,6 +18,7 @@
         <link href="{{ url('/assets/css/custom.css') }}" rel="stylesheet">
 
         <script src="https://cdn.tailwindcss.com"></script>
+        <script type="text/javascript" src="{{ url('/assets/js/custom.js') }}"></script>
     </head>
     <body class="font-sans antialiased min-h-screen">
         <div class="flex flex-col h-screen bg-gray-100">

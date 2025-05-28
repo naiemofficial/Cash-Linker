@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
             'value'     => '1',
             'category'  => 'regular',
             'type'      => 'note',
-            'amount'    => 1,
+            'price'     => 1,
             'commission' => 50,
             'image'     => url('/assets/images/money/1-Taka-Note.jpg'),
         ]);
@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
             'value'     => '2',
             'category'  => 'regular',
             'type'      => 'bundle',
-            'amount'    => 200,
+            'price'    => 200,
             'commission' => 150,
             'image'     => url('/assets/images/money/2-Taka-Note.jpg'),
         ]);
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
             'value'     => '10',
             'category'  => 'regular',
             'type'      => 'bundle',
-            'amount'    => 1000,
+            'price'    => 1000,
             'commission' => 200,
             'image'     => url('/assets/images/money/10-Taka-Note.jpg'),
         ]);
@@ -51,7 +51,7 @@ class ProductSeeder extends Seeder
             'value'     => '20',
             'category'  => 'regular',
             'type'      => 'bundle',
-            'amount'    => 2000,
+            'price'    => 2000,
             'commission' => 200,
             'image'     => url('/assets/images/money/20-Taka-Note.jpg'),
         ]);
@@ -62,7 +62,7 @@ class ProductSeeder extends Seeder
             'value'     => '50',
             'category'  => 'regular',
             'type'      => 'bundle',
-            'amount'    => 5000,
+            'price'    => 5000,
             'commission' => 200,
             'image'     => url('/assets/images/money/50-Taka-Note.jpg'),
         ]);
@@ -73,7 +73,7 @@ class ProductSeeder extends Seeder
             'value'     => '100',
             'category'  => 'regular',
             'type'      => 'note',
-            'amount'    => 100,
+            'price'    => 100,
             'commission' => 20,
             'image'     => url('/assets/images/money/100-Taka-Note.jpg'),
         ]);
@@ -84,7 +84,7 @@ class ProductSeeder extends Seeder
             'value'     => '500',
             'category'  => 'regular',
             'type'      => 'note',
-            'amount'    => 500,
+            'price'    => 500,
             'commission' => 10,
             'image'     => url('/assets/images/money/500-Taka-Note.jpg'),
         ]);
@@ -95,7 +95,7 @@ class ProductSeeder extends Seeder
             'value'     => '1000',
             'category'  => 'regular',
             'type'      => 'note',
-            'amount'    => 1000,
+            'price'    => 1000,
             'commission' => 5,
             'image'     => url('/assets/images/money/1000-Taka-Note.jpg'),
         ]);

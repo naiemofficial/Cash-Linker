@@ -50,8 +50,8 @@
             </select>
         </div>
         <div class="sm:col-span-2">
-            <label for="amount" class="block mb-2 text-sm font-medium text-gray-900 required">Amount</label>
-            <input wire:model="amount" type="number" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="৳10" required="">
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 required">price</label>
+            <input wire:model="price" type="number" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="৳10" required="">
         </div>
         <div class="sm:col-span-2">
             <label for="commission" class="block mb-2 text-sm font-medium text-gray-900 required">Commission</label>

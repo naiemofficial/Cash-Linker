@@ -10,11 +10,18 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\User;
+use Livewire\WithPagination;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 class Form extends Component
 {
+    use WithPagination;
+
     public $form = 'add';
+    // public $products = null;
     public $order = null;
+    public $quantity = [];
 
     public $user = null;
     public $items;
@@ -40,6 +47,8 @@ class Form extends Component
             $this->status           = $order->status;
             $this->note             = $order->note;
         }
+
+        $this->quantity = array_fill_keys(Product::all()->pluck('id')->toArray(), 1);
     }
 
 
@@ -76,10 +85,63 @@ class Form extends Component
         $this->dispatch('refresh-message', response: $response);
     }
 
+
+    public function addToCart($productID){
+        $product = Product::find($productID);
+        $quantity = $this->quantity[$product->id] ?? 1;
+
+        $options = [
+            'origin'        => $product->origin,
+            'value'         => $product->value,
+            'category'      => $product->category,
+            'type'          => $product->type,
+            'year'          => $product->year,
+            'commission'    => $product->commission,
+            'image'         => $product->image,
+            'description'   => $product->description,
+        ];
+
+        $productData = [
+            'name'  => $product->name,
+            'price' => $product->price,
+            'options' => $options
+        ];
+
+
+        try {
+            if(Cart::content()->where('id', $product->id)->isEmpty()){
+                Cart::add($product->id, $product->name, $quantity, $product->price, options: $options)->setTaxRate(0);
+                $response = ['success' => $product->name . ' added to cart successfully!'];
+            } else {
+                $cartItem = Cart::content()->where('id', $product->id)->first();
+                $rowID = $cartItem->rowId;
+                Cart::update($rowID, ($cartItem->qty + $quantity))->setTaxRate(0);
+                Cart::update($rowID, $productData)->setTaxRate(0);
+                $response = ['info' => $product->name . ' cart updated successfully!'];
+            }
+            $this->dispatch('refresh-cart-Total');
+            $this->dispatch('refresh-cart-Summary');
+            $this->dispatch('refresh-message', response: $response);
+
+            $this->quantity[$product->id] = 1;
+        } catch (\Exception $error){
+            $response = ['error' => $error->getMessage()];
+            $this->dispatch('refresh-message', response: $response);
+        }
+    }
+
+
+    public function updateQuantity($productID, $quantity)
+    {
+        $this->quantity[$productID] = intval($quantity);
+    }
+
+
     public function render()
     {
         return view('livewire.order.form', [
-            'className' => $this::class
+            'className' => $this::class,
+            'products' => Product::paginate(15),
         ]);
     }
 }

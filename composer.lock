@@ -4,8 +4,84 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b75def643c19a7ec89f03d1a0236048",
+    "content-hash": "936a1e643520b92e1dd3027992f544fa",
     "packages": [
+        {
+            "name": "anayarojo/shoppingcart",
+            "version": "4.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anayarojo/laravel-shopping-cart.git",
+                "reference": "776023ad546b7b54a680f783b84cc55bc3fa1a77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anayarojo/laravel-shopping-cart/zipball/776023ad546b7b54a680f783b84cc55bc3fa1a77",
+                "reference": "776023ad546b7b54a680f783b84cc55bc3fa1a77",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "5.4.*||5.5.*||5.6.*||5.7.*||5.8.*||^6.0||^7.0||^8.0||^9.0||^10||^11||^12.0",
+                "illuminate/session": "5.4.*||5.5.*||5.6.*||5.7.*||5.8.*||^6.0||^7.0||^8.0||^9.0||^10||^11||^12.0",
+                "illuminate/support": "5.4.*||5.5.*||5.6.*||5.7.*||5.8.*||^6.0||^7.0||^8.0||^9.0||^10||^11||^12.0",
+                "nesbot/carbon": "~1.20||^1.26.3||^2.0||^3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.4|^4.0|^5.0|^6.0|^9.0|^10.0",
+                "phpunit/phpunit": "~5.0||~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
+            },
+            "suggest": {
+                "gloudemans/notify": "Simple flash notifications for Laravel"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Cart": "Gloudemans\\Shoppingcart\\Facades\\Cart"
+                    },
+                    "providers": [
+                        "Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gloudemans\\Shoppingcart\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Gloudemans",
+                    "email": "info@robgloudemans.nl",
+                    "homepage": "http://robgloudemans.nl/"
+                },
+                {
+                    "name": "Patrick Henninger",
+                    "email": "privat@skyraptor.eu",
+                    "homepage": "https://skyraptor.eu/"
+                },
+                {
+                    "name": "Raul Anaya Rojo",
+                    "email": "isw.anayarojo@gmail.com",
+                    "homepage": "https://anayarojo.net/"
+                }
+            ],
+            "description": "Laravel Shoppingcart",
+            "keywords": [
+                "laravel",
+                "shoppingcart"
+            ],
+            "support": {
+                "issues": "https://github.com/anayarojo/laravel-shopping-cart/issues",
+                "source": "https://github.com/anayarojo/laravel-shopping-cart/tree/4.2.4"
+            },
+            "time": "2025-03-05T22:20:00+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.3",
@@ -2143,16 +2219,16 @@
         },
         {
             "name": "livewire-filemanager/filemanager",
-            "version": "v0.1.39",
+            "version": "v0.1.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire-filemanager/filemanager.git",
-                "reference": "f6539f76a3490004b23d899a9b4dcb9b8f6f07b4"
+                "reference": "e89e8b1b6395b92b7cea2c48c527ffc18376e8b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire-filemanager/filemanager/zipball/f6539f76a3490004b23d899a9b4dcb9b8f6f07b4",
-                "reference": "f6539f76a3490004b23d899a9b4dcb9b8f6f07b4",
+                "url": "https://api.github.com/repos/livewire-filemanager/filemanager/zipball/e89e8b1b6395b92b7cea2c48c527ffc18376e8b3",
+                "reference": "e89e8b1b6395b92b7cea2c48c527ffc18376e8b3",
                 "shasum": ""
             },
             "require": {
@@ -2203,7 +2279,7 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire-filemanager/filemanager/issues",
-                "source": "https://github.com/livewire-filemanager/filemanager/tree/v0.1.39"
+                "source": "https://github.com/livewire-filemanager/filemanager/tree/v0.1.40"
             },
             "funding": [
                 {
@@ -2215,7 +2291,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-22T13:29:59+00:00"
+            "time": "2025-05-27T09:54:11+00:00"
         },
         {
             "name": "livewire/livewire",

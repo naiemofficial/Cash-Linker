@@ -38,7 +38,7 @@ class ProductController extends Controller
         $query = $trashPage ? Product::onlyTrashed() : Product::query();
 
         return view('product.index', [
-            'products' => $query->orderBy('created_at', 'desc')->paginate(15),
+            'products' => $query->orderBy('created_at', 'desc')->paginate(5),
             'trash_count' => Product::onlyTrashed()->count(),
             'trashPage' => $trashPage,
         ]);
@@ -65,7 +65,7 @@ class ProductController extends Controller
                 'category'      => ['required', 'string', 'max:255'],
                 'type'          => ['required', 'string', 'max:255'],
                 'year'          => ['nullable', 'numeric'],
-                'amount'        => ['required', 'numeric'],
+                'price'        => ['required', 'numeric'],
                 'commission'    => ['required', 'numeric'],
                 'image'         => ['nullable', 'url'],
                 'description'   => ['nullable', 'string'],
@@ -117,7 +117,7 @@ class ProductController extends Controller
                 'category'      => ['required', 'string', 'max:255'],
                 'type'          => ['required', 'string', 'max:255'],
                 'year'          => ['nullable', 'numeric'],
-                'amount'        => ['required', 'numeric'],
+                'price'        => ['required', 'numeric'],
                 'commission'    => ['required', 'numeric'],
                 'image'         => ['nullable', 'url'],
                 'description'   => ['nullable', 'string'],
