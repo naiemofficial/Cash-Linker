@@ -32,6 +32,7 @@ class Form extends Component
     public $status;
     public $note;
 
+    public $style = '';
 
 
 

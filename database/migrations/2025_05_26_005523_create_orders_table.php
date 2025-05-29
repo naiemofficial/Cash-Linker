@@ -14,13 +14,15 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->json('items');
-            $table->json('delivery_method');
-            $table->json('address');
-            $table->json('payment_method');
+            $table->json('receiver');
+            $table->json('delivery_address');
+            $table->text('note')->nullable();
+            $table->json('delivery_method_snapshot');
+            $table->json('payment_method_snapshot');
+            $table->json('products');
+            $table->json('products_snapshot');
             $table->json('payment_info');
             $table->enum('status', ['pending', 'processing', 'completed', 'courier', 'delivered', 'cancelled'])->default('pending');
-            $table->text('note')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

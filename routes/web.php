@@ -11,7 +11,7 @@ use LivewireFilemanager\Filemanager\Http\Controllers\Files\FileController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -58,6 +58,7 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
 });
 
 Route::get('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -30,5 +30,15 @@ class PaymentMethodSeeder extends Seeder
             'account_no'    => '01300000000',
             'account_name'  => 'Anonymous',
         ]);
+
+        PaymentMethod::create([
+            'logo'          => url('/assets/images/logo/Bank-Asia-logo.png'),
+            'name'          => 'Bank Asia',
+            'type'          => 'bank',
+            'category'      => 'business',
+            'account_no'    => '12345678910',
+            'account_name'  => 'Money Commerce',
+            'swift_code'    => 'BALBBDDH_X_',
+        ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Order;
 
+use App\Http\Controllers\DeliveryMethodController;
+use App\Http\Middleware\UserRoleMiddleware;
 use App\Models\DeliveryMethod;
 use App\Models\Order;
 use App\Models\PaymentMethod;
@@ -25,6 +27,11 @@ class Summary extends Component
     public $deliveryCost = 0;
     public $showDeliveryMethod = false;
     public $paymentMethod = null;
+
+    // Inputs
+    public $wallet;
+    public $transactionId;
+    public $transactionInfo;
 
     public $heading = true;
 
@@ -74,7 +81,7 @@ class Summary extends Component
     #[On('select-delivery-method-Summary')]
     public function selectDeliveryMethod($deliveryMethod){
         $this->deliveryMethod = DeliveryMethod::find($deliveryMethod);
-        $this->deliveryCost = $this->deliveryMethod->cost;
+        $this->deliveryCost = Cart::count() > 0 ? $this->deliveryMethod->cost : 0;
         $this->extracted();
     }
 
@@ -85,7 +92,16 @@ class Summary extends Component
 
 
     public function confirmOrder() {
-        $products = Cart::content()->pluck('id')->toArray();
+        $products = Cart::content()->map(fn($item) => ['id' => $item->id, 'qty' => $item->qty])->values()->toArray();
+        $data = [
+            'products'          => $products,
+            'deliveryMethod'    => $this->deliveryMethod->id ?? null,
+            'paymentMethod'     => $this->paymentMethod->id ?? null,
+            'wallet'            => $this->wallet,
+            'transactionId'     => $this->transactionId,
+            'transactionInfo'   => $this->transactionInfo,
+        ];
+        $this->dispatch('confirm-order-Checkout', $data);
     }
 
 

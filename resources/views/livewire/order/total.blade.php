@@ -27,9 +27,9 @@
             <span class="text-lg font-bold text-blue-600">{{ $total }}</span>
         </div>
         <!-- Checkout -->
-        <button {{ ($cartItemsCount < 1 || ($showDeliveryMethod && empty($deliveryMethod))) ? 'disabled' : '' }} class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:bg-gray-500">
+        <a href="{{ route('order.checkout') }}" {{ ($cartItemsCount < 1 || ($showDeliveryMethod && empty($deliveryMethod))) ? 'disabled' : '' }} class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:bg-gray-500">
             <i class="fa-light fa-cart-shopping-fast mr-2"></i> Checkout
-        </button>
+        </a>
         <!-- Cart -->
         <button id="openRightModalSidebar" class="min-h-[34px] min-w-[40px] relative inline-flex items-center justify-center bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
             <i class="fa-light fa-cart-shopping-fast"></i>

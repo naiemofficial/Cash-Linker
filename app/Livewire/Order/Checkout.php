@@ -2,31 +2,44 @@
 
 namespace App\Livewire\Order;
 
+use App\Http\Controllers\DeliveryMethodController;
+use App\Http\Controllers\OrderController;
+use App\Http\Middleware\UserRoleMiddleware;
 use App\Models\DeliveryMethod;
+use App\Models\Order;
 use App\Models\PaymentMethod;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use WW\Countries\Models\Country;
 
 class Checkout extends Component
 {
+    public $cartCount;
     public $checkoutPage = true;
     public $name;
     public $email;
-    public $mobile;
+    public $phone;
     public $password;
-    public $password_confirmation;
+    public $passwordConfirmation;
     public $countries = [];
-    public $country;
+    public $country = 'Bangladesh';
     public $cities = [];
     public $city;
-    public $hideCountryCity = true;
-    public $address;
+    public $showCountryCity = false;
+    public $deliveryAddress;
+    public $note;
     public $deliveryMethods;
     public $deliveryMethod;
     public $paymentMethods;
     public $paymentMethod;
 
+    public $showOrderSummary = false;
+    public $orderId = null;
+
     public function mount() {
+        $this->cartCount = Cart::count();
         $this->deliveryMethods = DeliveryMethod::where('status', 'active')->get();
         $this->paymentMethods = PaymentMethod::where('status', 'active')->get();
         $this->countries = Country::where('name', 'Bangladesh')->orderBy('name')->pluck('name')->toArray();
@@ -38,6 +51,31 @@ class Checkout extends Component
 
     public function updatePaymentMethod($paymentMethodId){
         $this->dispatch('select-payment-method-Summary', intval($paymentMethodId));
+    }
+
+    #[On('confirm-order-Checkout')]
+    public function confirmOrder($data){
+        $data = [
+            ...$data,
+            'name' => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'password' => $this->password,
+            'password_confirmation' => $this->passwordConfirmation,
+            'country' => $this->country,
+            'city' => $this->city,
+            'deliveryAddress' => $this->deliveryAddress,
+        ];
+
+        $request = request();
+        $request->merge($data);
+        $response = app(OrderController::class)->store($request);
+
+        if($response->isSuccessful()){
+            $this->showOrderSummary = true;
+            $this->orderId = $response->getData()->id;
+        }
+        $this->dispatch('refresh-message', response: $response);
     }
 
     public function render()

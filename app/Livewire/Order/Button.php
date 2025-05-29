@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class Button extends Component
 {
+    public $statuses = [];
     public $form = 'add';
 
     public function submit(): void {

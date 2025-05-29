@@ -30,7 +30,7 @@
                         <th class="px-5 py-4 border-b-2 border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
                             Delivery Method
                         </th>
-                        <th class="px-5 py-4 border-b-2 border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
+                        <th class="px-5 py-4 border-b-2 border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
                             Address
                         </th>
                         <th class="px-5 py-4 border-b-2 border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
@@ -51,16 +51,34 @@
                                 {{ $order->id }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-left">
-                                {{ $order->delivery_method }}
+                                {{ $order->delivery_method_snapshot['name'] }}
                             </td>
-                            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center truncate">
-                                {{ $order->address }}
+                            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-left truncate">
+                                @php
+                                    $address = $order->delivery_address['country'];
+                                    $address = strlen($address) > 0 ? ',' : '';
+                                    $address = $order->delivery_address['city'];
+                                    $address = strlen($address) > 0 ? ',' : '';
+                                    $address = $order->delivery_address['address'];
+                                @endphp
+                                {{ $address }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
-                                {{ $order->payment_method }}
+                                {{ $order->payment_method_snapshot['name'] }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-xs text-center">
-                                <span class="inline-block px-2 py-0.5 text-gray-700 border border-gray-700 rounded-full">
+                                @php
+                                    if($order->status === 'pending'){
+                                        $color = 'gray-600';
+                                    } else if($order->status === 'completed'){
+                                        $color = 'green-500';
+                                    } else if($order->status === 'cancelled'){
+                                        $color = '[red]';
+                                    }  else {
+                                        $color = 'blue-600';
+                                    }
+                                @endphp
+                                <span class="inline-block px-2 py-0.5 text-{{ $color }} border border-{{ $color }} rounded-full">
                                     {{ ucwords(str_replace('-', ' ', $order->status)) }}
                                 </span>
                             </td>

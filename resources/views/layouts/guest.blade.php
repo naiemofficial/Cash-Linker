@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&family=Rubik+Microbe&display=swap" rel="stylesheet">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css'])
 
@@ -20,8 +25,10 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script type="text/javascript" src="{{ url('/assets/js/custom.js') }}"></script>
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <body class="font-sans text-gray-900 antialiased bg-gray-100">
+        <x-guest.header />
+        <section section="hero">{{ $hero ?? '' }}</section>
+        <div class="max-w-[1400px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {{ $slot }}
         </div>
     </body>

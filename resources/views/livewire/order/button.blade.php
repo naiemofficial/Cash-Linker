@@ -1,4 +1,11 @@
-<div>
+<div class="inline-flex flex-row">
+    @if($form == 'edit')
+        <form wire:submit.prevent="submit">
+            <div class="inline-flex flex-row items-center content-center space-x-1 w-[150px] mr-2">
+            </div>
+        </form>
+    @endif
+
     <button
         wire:click="submit"
         wire:loading.attr="disabled"

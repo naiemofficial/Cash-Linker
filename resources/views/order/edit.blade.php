@@ -1,13 +1,13 @@
-<x-dashboard.index title="Edit Product">
+<x-dashboard.index title="Edit Order">
     <x-slot:headerRight>
-        <livewire:product.button form="edit" />
+        <livewire:order.button form="edit" :$statuses />
     </x-slot:headerRight>
 
     <div class="h-full w-full rounded-lg relative">
         <livewire:message.index />
 
         <div class="p-5 h-full overflow-auto">
-            <livewire:product.form :$values :$categories :$types :$product />
+            <livewire:order.edit :$order />
         </div>
     </div>
 </x-dashboard.index>

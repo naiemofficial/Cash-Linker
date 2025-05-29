@@ -1,4 +1,4 @@
-<div class="w-full rounded-lg {{ !$checkoutPage ? 'h-screen' : '' }} flex flex-col ">
+<div class="w-full rounded-lg {{ ($checkoutPage || Route::is('home')) ? '' : 'h-screen' }} flex flex-col ">
     @if($checkoutPage)
         <h3 class="order_review_heading"> Your Order </h3>
     @else
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full {{ !$checkoutPage ? 'px-6' : '' }} overflow-y-auto">
+        <div class="w-full {{ !$checkoutPage ? 'px-6' : '' }} overflow-y-auto {{ Route::is('home') ? 'max-h-[495px]' : '' }}">
                 <ul class="space-y-4 text-sm w-full">
                     @foreach($cartContent as $product)
                         @php
@@ -39,7 +39,7 @@
                         <li
                             wire:key="{{ $product['id'] }}"
                             x-data="{ isOpen: false }"
-                            class="border-b-[1px] border-gray-200 overflow-hidden last:border-b-0">
+                            class="border-b-[1px] border-gray-200 overflow-hidden last:border-b-0" style="margin-top: 0;">
 
                             <div
                                 class="accordion-header flex flex-row gap-x-5 items-center justify-between py-2 transition duration-300">
@@ -48,7 +48,7 @@
                                         @click="$dispatch('accordion-toggle', { id: '{{ $product['id'] }}', open: !isOpen })"
                                         @accordion-toggle.window="isOpen = $event.detail.id === '{{ $product['id'] }}' ? $event.detail.open : false"
                                         class="text-lg w-[18px] inline-flex items-center justify-center">
-                                        <i :class="isOpen ? 'fa-solid fa-circle-caret-up text-blue-600' : 'fa-solid fa-circle-caret-down text-gray-700'"></i>
+                                        <i :class="isOpen ? 'fa-solid fa-circle-caret-up text-blue-600' : 'fa-solid fa-circle-caret-down text-gray-700'" class="pointer-events-none"></i>
                                     </button>
                                     <div class="inline-flex w-12 {{ str_contains($product['options']['type'], 'penny') ? 'h-12' : 'h-auto min-h-6' }} rounded-sm bg-gray-100 border border-gray-200 items-center justify-center">
                                         @if(empty($product['options']['image']))
@@ -155,7 +155,7 @@
 
 
 
-    <div class="border-t border-gray-200 pt-4 space-y-2 mt-auto {{ !$checkoutPage ? 'px-6' : '' }} py-3 {{ !$checkoutPage ? 'mb-[60px]' : ''  }}">
+    <div class="flex flex-col border-t border-gray-200 pt-4 space-y-2 mt-auto {{ !$checkoutPage ? 'px-6' : '' }} py-3 {{ ($checkoutPage || Route::is('home')) ? '' : 'mb-[60px]'  }} mb-3">
         <div class="flex justify-between text-gray-600 text-sm">
             <span class="font-semibold">Subtotal</span>
             @php
@@ -220,9 +220,9 @@
         </div>
 
         @if(!$checkoutPage)
-            <button {{ (count($cartContent) < 1 || ($showDeliveryMethod && empty($deliveryMethod))) ? 'disabled' : '' }} class="mt-6 w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-500 disabled:cursor-not-allowed">
+            <a href="{{ route('order.checkout') }}" {{ (count($cartContent) < 1 || ($showDeliveryMethod && empty($deliveryMethod))) ? 'disabled' : '' }} class="mt-6 w-full bg-blue-600 text-white text-center py-3 px-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-500 disabled:cursor-not-allowed">
                 Proceed to Checkout
-            </button>
+            </a>
         @endif
     </div>
 
@@ -271,7 +271,15 @@
             @endif
             <button
                 wire:click="confirmOrder"
-                {{ (count($cartContent) < 1 || ($showDeliveryMethod && empty($deliveryMethod))) ? 'disabled' : '' }} class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-500 disabled:cursor-not-allowed font-bold">
+                type="button"
+                @if(
+                count($cartContent) < 1 ||
+                ($showDeliveryMethod && empty($deliveryMethod)) ||
+                empty($paymentMethod)
+                )
+                    disabled
+                @endif
+                class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-500 disabled:cursor-not-allowed font-bold">
                 Confirm Order
             </button>
         </div>
