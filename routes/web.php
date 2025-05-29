@@ -57,6 +57,8 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
     Route::get('/order/restore/{order}/{redirect?}', [OrderController::class, 'restore'])->name('order.restore');
 });
 
+Route::get('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

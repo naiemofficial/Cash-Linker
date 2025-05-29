@@ -50,6 +50,15 @@ class OrderController extends Controller
         ]);
     }
 
+
+    /**
+     * Show the form for checkout order.
+     */
+    public function checkout()
+    {
+        return view('order.checkout');
+    }
+
     /**
      * Store a newly created resource in storage.
      */

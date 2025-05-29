@@ -12,10 +12,12 @@
                     <span class="text-sm font-medium text-gray-900">{{ $extraCost }}</span>
                 </div>
             </div>
-            <div class="flex items-center gap-1">
-                <span class="text-sm text-gray-600">Delivery charge:</span>
-                <span class="text-sm font-medium text-gray-900">{{ number_format(empty($deliveryMethod) ? 0.00 : $deliveryMethod->cost, 2, '.', ',') }}</span>
-            </div>
+            @if($showDeliveryMethod)
+                <div class="flex items-center gap-1">
+                    <span class="text-sm text-gray-600">Delivery charge:</span>
+                    <span class="text-sm font-medium text-gray-900">{{ number_format($deliveryCost, 2, '.', ',') }}</span>
+                </div>
+            @endif
         </div>
     </div>
     <div class="flex flex-row gap-4 items-center">
@@ -25,7 +27,7 @@
             <span class="text-lg font-bold text-blue-600">{{ $total }}</span>
         </div>
         <!-- Checkout -->
-        <button {{ empty($deliveryMethod) ? 'disabled' : '' }} class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:bg-gray-500">
+        <button {{ ($cartItemsCount < 1 || ($showDeliveryMethod && empty($deliveryMethod))) ? 'disabled' : '' }} class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:bg-gray-500">
             <i class="fa-light fa-cart-shopping-fast mr-2"></i> Checkout
         </button>
         <!-- Cart -->

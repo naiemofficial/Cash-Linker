@@ -4,6 +4,7 @@ namespace App\Livewire\Order;
 
 use App\Models\DeliveryMethod;
 use App\Models\Order;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -13,14 +14,17 @@ use Livewire\WithPagination;
 class Summary extends Component
 {
     use WithPagination;
+    public $checkoutPage = false;
     public $cartContent;
     public $cartItemsCount = 0;
     public $totalMoney = 0;
     public $extraCost = 0;
     public $quantity = [];
     public $deliveryMethods = [];
-    public $deliveryMethod;
+    public $deliveryMethod = null;
     public $deliveryCost = 0;
+    public $showDeliveryMethod = false;
+    public $paymentMethod = null;
 
     public $heading = true;
 
@@ -67,10 +71,23 @@ class Summary extends Component
         $this->extracted();
     }
 
+    #[On('select-delivery-method-Summary')]
     public function selectDeliveryMethod($deliveryMethod){
-        $this->deliveryCost = DeliveryMethod::find($deliveryMethod)->cost;
+        $this->deliveryMethod = DeliveryMethod::find($deliveryMethod);
+        $this->deliveryCost = $this->deliveryMethod->cost;
         $this->extracted();
     }
+
+    #[On('select-payment-method-Summary')]
+    public function selectPaymentMethod($paymentMethod){
+        $this->paymentMethod = PaymentMethod::find($paymentMethod);
+    }
+
+
+    public function confirmOrder() {
+        $products = Cart::content()->pluck('id')->toArray();
+    }
+
 
     public function render()
     {

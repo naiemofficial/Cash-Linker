@@ -22,7 +22,7 @@
                     <select wire:model="type" id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                         <option value="">Select account type</option>
                         @foreach($types as $type)
-                            <option value="{{ $type }}">{{ ucwords(str_replace('-', ' ', $type)) }}</option>
+                            <option value="{{ $type }}">{{ $type === 'mfs' ? 'MFS' : ucwords(str_replace('-', ' ', $type)) }}</option>
                         @endforeach
                     </select>
                 </div>

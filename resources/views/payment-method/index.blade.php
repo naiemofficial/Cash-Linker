@@ -67,7 +67,7 @@
                                 {{ $paymentMethod->account_no }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
-                                {{ ucwords(str_replace('-', ' ', $paymentMethod->type)) }}
+                                {{ $paymentMethod->type === 'mfs' ? 'MFS' : ucwords(str_replace('-', ' ', $paymentMethod->type)) }}
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
                                 {{ ucwords(str_replace('-', ' ', $paymentMethod->category)) }}
