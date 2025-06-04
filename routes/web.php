@@ -17,6 +17,9 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+});
 Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
@@ -48,7 +51,6 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
     Route::get('/payment-method/delete/permanent/{paymentMethod}/{redirect?}', [PaymentMethodController::class, 'destroyPermanent'])->name('payment-method.deletePermanent');
     Route::get('/payment-method/restore/{paymentMethod}/{redirect?}', [PaymentMethodController::class, 'restore'])->name('payment-method.restore');
 
-    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('/orders/trash', [OrderController::class, 'index'])->name('order.index.trash');
     Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
     Route::get('/order/edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
@@ -58,7 +60,7 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
 });
 
 Route::get('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
-Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+Route::get('/order/edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

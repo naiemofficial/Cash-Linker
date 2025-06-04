@@ -32,8 +32,8 @@
         </a>
         <!-- Cart -->
         <button id="openRightModalSidebar" class="min-h-[34px] min-w-[40px] relative inline-flex items-center justify-center bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-800 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
-            <i class="fa-light fa-cart-shopping-fast"></i>
-            <span class="{{ $cartItemsCount >= 10 ? 'rounded-sm px-[5px]' : 'rounded-full' }} inline-flex items-center justify-center bg-red-600 text-white h-[18px] min-w-[18px] transition-colors duration-200 absolute -top-[1px] -right-[50%] -translate-x-[50%] -translate-y-[50%]">
+            <i class="fa-light fa-cart-shopping-fast pointer-events-none"></i>
+            <span class="{{ $cartItemsCount >= 10 ? 'rounded-sm px-[5px]' : 'rounded-full' }} inline-flex items-center justify-center bg-red-600 text-white h-[18px] min-w-[18px] transition-colors duration-200 absolute -top-[1px] -right-[50%] -translate-x-[50%] -translate-y-[50%] pointer-events-none">
                 {{ $cartItemsCount }}
             </span>
         </button>

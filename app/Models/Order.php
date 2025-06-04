@@ -20,16 +20,18 @@ class Order extends Model
         'products_snapshot',
         'payment_info',
         'status',
+        'log',
     ];
 
     protected $casts = [
-        'receiver' => 'array',
-        'delivery_address' => 'array',
-        'delivery_method_snapshot' => 'array',
-        'payment_method_snapshot' => 'array',
-        'products' => 'array',
-        'products_snapshot' => 'array',
-        'payment_info' => 'array',
+        'receiver'                  => 'array',
+        'delivery_address'          => 'array',
+        'delivery_method_snapshot'  => 'array',
+        'payment_method_snapshot'   => 'array',
+        'products'                  => 'array',
+        'products_snapshot'         => 'array',
+        'payment_info'              => 'array',
+        'log'                       => 'array',
     ];
 
     public static function countCartExtraCost(){

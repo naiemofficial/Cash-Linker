@@ -1,4 +1,4 @@
-<section class="bg-white antialiased">
+<section class="bg-white antialiased rounded-lg">
     @if(!empty($order))
         <div class="mx-auto max-w-2xl px-4 2xl:px-0 py-8 md:py-16">
             <h2 class="text-md font-semibold text-gray-900 mb-2">Thanks for your order!</h2>

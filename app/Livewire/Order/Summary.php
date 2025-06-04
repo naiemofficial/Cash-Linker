@@ -17,6 +17,7 @@ class Summary extends Component
 {
     use WithPagination;
     public $checkoutPage = false;
+    public $editable = true;
     public $cartContent;
     public $cartItemsCount = 0;
     public $totalMoney = 0;
@@ -46,8 +47,12 @@ class Summary extends Component
     }
 
 
-    public function updateQuantity($productID, $quantity)
+    #[On('update-quantity-Summary')]
+    public function updateQuantity($productData)
     {
+        $productID = $productData['id'];
+        $quantity = $productData['quantity'];
+
         $product = Product::find($productID);
         $cartItem = Cart::content()->where('id', $productID)->first();
         $rowID = $cartItem->rowId;
@@ -73,6 +78,7 @@ class Summary extends Component
         $this->extracted();
     }
 
+    #[On('remove-cart-item-Summary')]
     public function removeCartItem($rowId){
         Cart::remove($rowId);
         $this->extracted();

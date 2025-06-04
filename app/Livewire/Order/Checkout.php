@@ -74,6 +74,7 @@ class Checkout extends Component
         if($response->isSuccessful()){
             $this->showOrderSummary = true;
             $this->orderId = $response->getData()->id;
+            $this->dispatch('refresh-guest-Button');
         }
         $this->dispatch('refresh-message', response: $response);
     }
