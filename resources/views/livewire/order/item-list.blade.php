@@ -1,5 +1,5 @@
-<div class="flex flex-col">
-    <div class="bg-gray-500 text-white px-6 sticky top-0 py-1 rounded-b-md h-[30px]">
+<div class="flex flex-col itemlist-wrapper">
+    <div class="bg-gray-500 text-white px-6 sticky top-0 py-1 rounded-b-md h-[30px] list-header">
         <div class="flex flex-row gap-x-5 items-center justify-between text-sm font-semibold">
             <div class="flex flex-row gap-3 items-center">
                 <span class="w-[18px]"></span>
@@ -145,7 +145,7 @@
                                     <td class="bg-white border border-gray-300 px-2 py-1 text-center">{{ ucwords(str_replace('-', ' ', $product_category)) }}</td>
                                     <td class="bg-white border border-gray-300 px-2 py-1 text-center">{{ ucwords(str_replace('-', ' ', $product_type)) }}</td>
                                     <td class="bg-white border border-gray-300 px-2 py-1 text-center">{{ $value }}</td>
-                                    <td class="bg-white border border-gray-300 px-2 py-1 text-center"> {{ $year }} </td>
+                                    <td class="bg-white border border-gray-300 px-2 py-1 text-center"> {{ $year ?? 'N/A' }} </td>
                                 </tr>
                                 @if(strlen($description) > 0)
                                     <tr>

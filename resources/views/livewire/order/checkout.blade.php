@@ -2,19 +2,19 @@
     <div class="flex justify-center mb-[60px]">
         <ol class="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 sm:text-base">
             <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
-                    <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden gap-2 {{ $cartCount > 0 ? 'text-blue-600' : '' }}">
-                      <i class="fa-regular fa-check-circle"></i> Cart
-                    </span>
+                <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden gap-2 {{ $cartCount > 0 ? 'text-blue-600' : '' }}">
+                  <i class="fa-regular fa-check-circle"></i> Cart
+                </span>
             </li>
             <li class="after:border-1 flex items-center text-primary-700 after:mx-6 after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 sm:after:inline-block sm:after:content-[''] md:w-full xl:after:mx-10">
-                    <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden gap-2 {{ $cartCount > 0 ? 'text-blue-600' : '' }}">
-                        <i class="fa-regular fa-check-circle"></i> Checkout
-                    </span>
+                <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden gap-2 {{ $cartCount > 0 ? 'text-blue-600' : '' }}">
+                    <i class="fa-regular fa-check-circle"></i> Checkout
+                </span>
             </li>
             <li class="flex shrink-0 items-center gap-2">
-                    <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden gap-2 {{ $showOrderSummary ? 'text-blue-600' : '' }}">
-                        <i class="fa-regular fa-check-circle"></i>  Order summary
-                    </span>
+                <span class="flex items-center after:mx-2 after:text-gray-200 after:content-['/'] sm:after:hidden gap-2 {{ $showOrderSummary ? 'text-blue-600' : '' }}">
+                    <i class="fa-regular fa-check-circle"></i>  Order summary
+                </span>
             </li>
         </ol>
     </div>
@@ -104,7 +104,7 @@
                                     <div class="mb-2 flex items-center gap-2">
                                         <label for="note" class="block text-sm font-medium text-gray-900"> Note </label>
                                     </div>
-                                    <textarea wire:model="note" id="note" placeholder="City, Area, Street/Road No., Street name, House number, (Apartment, suite, unit, etc are optional)" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 min-h-[100px]"></textarea>
+                                    <textarea wire:model="note" id="note" placeholder="Optional" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 min-h-[100px]"></textarea>
                                 </div>
                             </div>
                         </div>

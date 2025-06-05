@@ -23,7 +23,7 @@ return new class extends Migration
             $table->json('products_snapshot');
             $table->json('payment_info');
             $table->enum('status', ['pending', 'processing', 'completed', 'courier', 'delivered', 'cancelled'])->default('pending');
-            $table->json('log');
+            $table->json('timeline')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

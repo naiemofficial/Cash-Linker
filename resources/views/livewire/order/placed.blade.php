@@ -2,7 +2,7 @@
     @if(!empty($order))
         <div class="mx-auto max-w-2xl px-4 2xl:px-0 py-8 md:py-16">
             <h2 class="text-md font-semibold text-gray-900 mb-2">Thanks for your order!</h2>
-            <p class="text-gray-500 mb-6 md:mb-8 text-sm">Your order <a href="#" class="font-medium text-gray-900 hover:underline" href="{{ route('order.edit', $order->id) }}">#{{ $order->id }}</a> will be processed within 24 hours during working days. We will notify you by email once your order has been shipped.</p>
+            <p class="text-gray-500 mb-6 md:mb-8 text-sm">Your order <a href="{{ route('order.edit', $order->id) }}" class="font-medium text-gray-900 hover:underline" href="{{ route('order.edit', $order->id) }}">#{{ $order->id }}</a> will be processed within 24 hours during working days. We will notify you by email once your order has been shipped.</p>
             <div class="space-y-4 sm:space-y-2 rounded-lg border border-dashed border-gray-200 bg-gray-50 p-6 mb-6 md:mb-8">
                 <dl class="sm:flex items-center justify-between gap-4">
                     <dt class="font-normal mb-1 sm:mb-0 text-gray-500 text-sm">Date</dt>
