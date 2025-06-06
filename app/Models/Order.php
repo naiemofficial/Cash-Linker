@@ -20,7 +20,6 @@ class Order extends Model
         'products_snapshot',
         'payment_info',
         'status',
-        'timeline',
     ];
 
     protected $casts = [
@@ -31,7 +30,6 @@ class Order extends Model
         'products'                  => 'array',
         'products_snapshot'         => 'array',
         'payment_info'              => 'array',
-        'timeline'                  => 'array',
     ];
 
     public static function countCartExtraCost(){

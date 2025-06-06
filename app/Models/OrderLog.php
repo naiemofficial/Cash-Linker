@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class OrderLog extends Model
+{
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            if (is_null($model->status) && is_null($model->note)) {
+                throw new \InvalidArgumentException('Either status or note must be filled');
+            }
+        });
+    }
+
+}
