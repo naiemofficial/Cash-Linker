@@ -8,6 +8,7 @@ class Edit extends Component
 {
     public $statuses = [];
     public $order = null;
+    public $class = null;
     public $orderId;
     public function render()
     {

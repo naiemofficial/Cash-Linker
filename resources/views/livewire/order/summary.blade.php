@@ -20,7 +20,7 @@
 
 
 
-    <div class="flex flex-col flex-shrink-0 flex-grow-0 flex-auto border-t border-gray-200 pt-4 space-y-2 mt-auto {{ !$checkoutPage ? 'px-6' : '' }} py-3 mb-3">
+    <div class="flex flex-col flex-shrink-0 flex-grow-0 flex-auto border-t border-gray-200 pt-4 space-y-2 mt-auto px-6 py-3 mb-3 proceed-checkout">
         <div class="flex justify-between text-gray-600 text-sm">
             <span class="font-semibold">Subtotal</span>
             @php

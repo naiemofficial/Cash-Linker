@@ -7,6 +7,7 @@ use App\Livewire\Message\Index as MessageIndex;
 use App\Livewire\Order\Checkout;
 use App\Models\DeliveryMethod;
 use App\Models\Order;
+use App\Models\OrderLog;
 use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\User;
@@ -110,7 +111,7 @@ class OrderController extends Controller
             // Order Data
             if($this->isMfsPayment($request->input('paymentMethod'))){
                 $validated_payment_info = $request->validate([
-                    'wallet' => ['required', 'numeric', 'min_digits:11', 'max:12'],
+                    'wallet' => ['required', 'numeric', 'digits_between:11,12'],
                     'transactionId' => ['required', 'max:15'],
                 ]);
             } else {
@@ -177,12 +178,68 @@ class OrderController extends Controller
         ]);
     }
 
+
+    /**
+     * Store the updated information in storage as order log.
+     */
+    private function createLog($orderId, $data = []){
+        $log_data = $data;
+        $log_data['order_id'] = $orderId;
+
+        try {
+            OrderLog::create($log_data);
+            return response()->json([
+                'success' => 'A note added to the order'
+            ], 201);
+        } catch (\Exception $error){
+            $message = ['error' => $error->getMessage()];
+            return response()->json($message, 400);
+        }
+    }
+
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $restricted_statuses = ['cancelled', 'delivered'];
+        try {
+            $validated = $request->validate([
+                'status'    => [Rule::requiredIf(function () use ($restricted_statuses, $order) {
+                    return !in_array($order->status, $restricted_statuses);
+                })],
+                'note'      => [Rule::requiredIf(function () use ($restricted_statuses, $order) {
+                    return in_array($order->status, $restricted_statuses);
+                }), 'nullable', 'string'],
+            ]);
+
+            $isSameStatus = ($order->status === $validated['status']);
+            if(isset($validated['status']) &&  $isSameStatus && empty($validated['note'])){
+                return response()->json([
+                    'warning' => 'No changes made!'
+                ], 204);
+            }
+
+            if(!empty($validated['note']) && ($isSameStatus || empty($validated['status'])  || in_array($order->status, $restricted_statuses))) {
+                if($isSameStatus) unset($validated['status']);
+                return $this->createLog($order->id, $validated);
+            }
+
+
+
+            $order->status = $validated['status'];
+            $order->save();
+            return $this->createLog($order->id, $validated);
+
+            return response()->json([
+                'success' => 'Order updated successfully'
+            ], 200);
+
+        } catch (\Exception $error){
+            $message = ['error' => $error->getMessage()];
+            return response()->json($message, 400);
+        }
     }
 
     /**

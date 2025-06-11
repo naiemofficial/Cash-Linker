@@ -10,6 +10,10 @@
                 </dl>
                 <dl class="sm:flex items-center justify-between gap-4">
                     <dt class="font-normal mb-1 sm:mb-0 text-gray-500 text-sm">Payment Method</dt>
+                    <dd class="font-medium text-gray-700 text-sm">{{ $order->payment_method_snapshot['name'] }}</dd>
+                </dl>
+                <dl class="sm:flex items-center justify-between gap-4">
+                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500 text-sm">Delivery Method</dt>
                     <dd class="font-medium text-gray-700 text-sm">{{ $order->delivery_method_snapshot['name'] }}</dd>
                 </dl>
                 <dl class="sm:flex items-center justify-between gap-4">
@@ -19,11 +23,12 @@
                 <dl class="sm:flex items-center justify-between gap-4">
                     <dt class="font-normal mb-1 sm:mb-0 text-gray-500 text-sm">Address</dt>
                     @php
-                        $address = $order->delivery_address['country'];
-                        $address = strlen($address) > 0 ? ',' : '';
-                        $address = $order->delivery_address['city'];
-                        $address = strlen($address) > 0 ? ',' : '';
-                        $address = $order->delivery_address['address'];
+                        $address  = $country = $order->delivery_address['country'] ?? '';
+                        $city     = $order->delivery_address['city'] ?? '';
+                        $address .= strlen($country) > 0 ? ', ' : '';
+                        $address .= $city;
+                        $address .= strlen($city) > 0    ? ', ' : '';
+                        $address .= $order->delivery_address['address'] ?? '';
                     @endphp
                     <dd class="font-medium text-gray-700 sm:text-end text-sm">{{ $address }}</dd>
                 </dl>

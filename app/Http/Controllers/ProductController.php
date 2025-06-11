@@ -38,7 +38,7 @@ class ProductController extends Controller
         $query = $trashPage ? Product::onlyTrashed() : Product::query();
 
         return view('product.index', [
-            'products' => $query->orderBy('created_at', 'desc')->paginate(5),
+            'products' => $query->orderBy('created_at', 'desc')->paginate(15),
             'trash_count' => Product::onlyTrashed()->count(),
             'trashPage' => $trashPage,
         ]);

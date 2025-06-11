@@ -150,13 +150,31 @@
     color: #4b5563;
     border-bottom: 1px dashed #e5e7eb;
     border-top-left-radius: 0.5rem;
+    z-index: 1;
 }
-.dashboard .order-timeline::before {
+.dashboard .order-timeline::before,
+.dashboard .order-timeline::after {
     content: '';
-    border-right: 1px solid #e5e7eb;
+    border-left: 1px solid #e5e7eb;
     height: 100%;
     display: inline-block;
     position: absolute;
     top: 0;
     left: 4px;
+}
+.dashboard .order-timeline::after {
+    top: unset;
+    height: 20px;
+}
+
+.checkout-sidebar > .h-screen {
+    height: auto;
+}
+
+.cart-modal .proceed-checkout {
+    margin-bottom: 60px;
+}
+
+.cart-modal .itemlist-wrapper {
+    overflow-y: auto;
 }

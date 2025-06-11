@@ -53,7 +53,7 @@
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-left">
                                 {{ $order->delivery_method_snapshot['name'] }}
                             </td>
-                            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-left truncate">
+                            <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-left">
                                 @php
                                     $address = $order->delivery_address['country'];
                                     $address = strlen($address) > 0 ? ',' : '';
@@ -61,7 +61,7 @@
                                     $address = strlen($address) > 0 ? ',' : '';
                                     $address = $order->delivery_address['address'];
                                 @endphp
-                                {{ $address }}
+                                <div class="inline-block max-w-[250px] truncate">{{ $address }}</div>
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
                                 {{ $order->payment_method_snapshot['name'] }}
@@ -70,7 +70,7 @@
                                 @php
                                     if($order->status === 'pending'){
                                         $color = 'gray-600';
-                                    } else if($order->status === 'completed'){
+                                    } else if(in_array($order->status, ['completed', 'delivered'])){
                                         $color = 'green-500';
                                     } else if($order->status === 'cancelled'){
                                         $color = '[red]';

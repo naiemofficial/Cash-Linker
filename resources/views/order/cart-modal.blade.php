@@ -7,7 +7,7 @@
             <i class="fa-light fa-circle-xmark pointer-events-none"></i>
         </button>
     </div>
-    <div class="flex-1">
+    <div class="flex-1 cart-modal">
         <livewire:order.summary heading="false"  />
     </div>
 </div>

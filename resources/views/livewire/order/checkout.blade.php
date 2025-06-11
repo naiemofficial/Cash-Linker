@@ -156,7 +156,7 @@
                         </div>
                     </div>
                     <div class="mt-6 w-full space-y-6 sm:mt-8 lg:mt-0 lg:max-w-xs xl:max-w-md">
-                        <div class="flow-root {{ $checkoutPage ? 'checkout-order-review' : '' }}">
+                        <div class="flow-root {{ $checkoutPage ? 'checkout-order-review' : '' }} checkout-sidebar">
                             <livewire:order.summary heading="false" :$checkoutPage :show-delivery-method="true"  />
                         </div>
                     </div>

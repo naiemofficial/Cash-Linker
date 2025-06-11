@@ -39,4 +39,9 @@ class Order extends Model
         });
         return (float) $sum;
     }
+
+
+    public function logs(){
+        return $this->hasMany(OrderLog::class)->orderBy('created_at', 'desc');
+    }
 }

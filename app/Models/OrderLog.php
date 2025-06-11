@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderLog extends Model
 {
+    protected $fillable = [
+        'order_id',
+        'status',
+        'note'
+    ];
     protected static function boot()
     {
         parent::boot();
@@ -15,6 +20,10 @@ class OrderLog extends Model
                 throw new \InvalidArgumentException('Either status or note must be filled');
             }
         });
+    }
+
+    public function order(){
+        return $this->belongsTo(Order::class);
     }
 
 }
