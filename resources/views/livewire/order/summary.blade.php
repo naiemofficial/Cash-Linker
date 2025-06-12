@@ -31,13 +31,13 @@
         </div>
 
         @php
-            $deliveryCost = floatval(str_replace(',', '', $deliveryCost));
-            $deliveryCost_formatted = number_format($deliveryCost, 2, '.', ',');
+            $delivery_cost = floatval(str_replace(',', '', $deliveryCost));
+            $delivery_cost_formatted = number_format($delivery_cost, 2, '.', ',');
         @endphp
         @if($showDeliveryMethod)
             <div class="flex justify-between text-gray-600 text-sm mt-1">
                 <span class="font-semibold">Delivery Charge</span>
-                <span class="text-gray-700 font-medium">{{ $deliveryCost_formatted }}৳</span>
+                <span class="text-gray-700 font-medium">{{ $delivery_cost_formatted }}৳</span>
             </div>
 
 
@@ -79,9 +79,10 @@
         <div class="flex justify-between font-semibold text-lg">
             <span>Total</span>
             @php
-                $total_final = $subtotal+$deliveryCost;
+                $total = $subtotal+$deliveryCost;
+                $total_formatted = number_format($total, 2, '.', ',');
             @endphp
-            <span>{{ number_format($total_final, 2, '.', ',') }}৳</span>
+            <span>{{ $total_formatted }}৳</span>
         </div>
 
         @if(!$checkoutPage)

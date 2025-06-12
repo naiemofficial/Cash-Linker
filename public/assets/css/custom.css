@@ -175,6 +175,7 @@
     margin-bottom: 60px;
 }
 
-.cart-modal .itemlist-wrapper {
+.cart-modal .itemlist-wrapper,
+.ordered-products .itemlist-wrapper {
     overflow-y: auto;
 }

@@ -1,5 +1,5 @@
 <div class="flex flex-col itemlist-wrapper">
-    <div class="bg-gray-500 text-white px-6 sticky top-0 py-1 rounded-b-md h-[30px] list-header">
+    <div class="bg-gray-500 text-white px-6 sticky top-0 py-1 {{ $checkoutPage ? 'pr-0' : '' }} rounded-b-md h-[30px] list-header">
         <div class="flex flex-row gap-x-5 items-center justify-between text-sm font-semibold">
             <div class="flex flex-row gap-3 items-center">
                 <span class="w-[18px]"></span>
@@ -37,9 +37,13 @@
                         $description        = $product['description'];
                     }
 
-                    $price_total = floatval($product['price'])*intval($qty);
-                    $commission_total = floatval($commission)*intval($qty);
-                    $total_cost = ($price_total+$commission_total);
+                    $price_total        = floatval($product['price'])*intval($qty);
+                    $commission_total   = floatval($commission)*intval($qty);
+                    $total_cost         = ($price_total+$commission_total);
+
+                    $price_total_formatted      = number_format($price_total,       2, '.', ',');
+                    $commission_total_formatted = number_format($commission_total,  2, '.', ',');
+                    $total_cost_formatted       = number_format($total_cost,        2, '.', ',');
                 @endphp
                 <li
                     wire:key="{{ $product['id'] }}"
@@ -72,7 +76,7 @@
                             @else
                                 <span class="w-[45px] p-[2px]">{{ $qty }}</span>
                             @endif
-                            <span class="text-gray-900 tex-sm w-[70px] text-right font-medium">{{ $total_cost }}৳</span>
+                            <span class="text-gray-900 tex-sm w-[70px] text-right font-medium">{{ $total_cost_formatted }}৳</span>
                             @if($editable)
                                 <button wire:click="removeCartItem('{{ $rowId }}')" class="text-red-500 hover:text-gray-700 transition-all focus:outline-none h-[16px] w-[16px] inline-flex items-center justify-center">
                                     <i class="fa-duotone fa-solid fa-trash pointer-events-none"></i>
@@ -110,8 +114,8 @@
                                         </div>
                                     </td>
                                     <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ floatval($product['price']) }}</td>
-                                    <td class="bg-white border border-gray-300 px-2 py-1 text-center">{{ $qty }}</td>
-                                    <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ $price_total }}</td>
+                                    <td rowspan="2" class="bg-white border border-gray-300 px-2 py-1 text-center">{{ $qty }}</td>
+                                    <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ $price_total_formatted }}</td>
                                 </tr>
                                 <tr>
                                     <td class="bg-white border border-gray-300 px-2 py-1">
@@ -120,12 +124,11 @@
                                         </div>
                                     </td>
                                     <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ floatval($commission) }}</td>
-                                    <td class="bg-white border border-gray-300 px-2 py-1 text-center">{{ $qty }}</td>
-                                    <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ $commission_total }}</td>
+                                    <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ $commission_total_formatted }}</td>
                                 </tr>
                                 <tr class="font-semibold bg-gray-50">
                                     <td colspan="3" class="bg-white border border-gray-300 px-2 py-1 text-right">Total Cost</td>
-                                    <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ $total_cost }}</td>
+                                    <td class="bg-white border border-gray-300 px-2 py-1 text-right">{{ $total_cost_formatted }}</td>
                                 </tr>
                                 </tbody>
                             </table>
