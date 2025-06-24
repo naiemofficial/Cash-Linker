@@ -135,6 +135,12 @@
                     </div>
                 </div>
             @endif
+
+            <div class="text-sm flex flex-row gap-2">
+                <input type="checkbox" wire:model="acceptance" class="h-4 rounded-full mt-1.5">
+                <p class="m-0">By proceeding, you confirm acceptance of the Terms of Service and adherence to central bank regulations.</p>
+            </div>
+
             <button
                 wire:click="confirmOrder"
                 type="button"

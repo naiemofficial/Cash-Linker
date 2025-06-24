@@ -120,6 +120,11 @@ class OrderController extends Controller
                 ]);
             }
 
+            // Agreed with the Terms
+            $request->validate([
+               'acceptance' => ['required', 'accepted'],
+            ]);
+
 
             // Get all cart products for snapshot
             $productIds = array_column($validated['products'], 'id');

@@ -1,5 +1,5 @@
 <header>
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <nav class="h-[100px] border-gray-200 px-4 lg:px-6 py-2.5 flex flex-row items-center {{ Route::is('home') ? '-mb-[100px]' : '' }}">
             <div class="flex flex-wrap justify-between items-center w-full">
                 <a href="{{ route('home') }}" class="flex items-center">

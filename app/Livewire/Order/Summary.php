@@ -29,6 +29,8 @@ class Summary extends Component
     public $showDeliveryMethod = false;
     public $paymentMethod = null;
 
+    public $acceptance = false;
+
     // Inputs
     public $wallet;
     public $transactionId;
@@ -106,6 +108,7 @@ class Summary extends Component
             'wallet'            => $this->wallet,
             'transactionId'     => $this->transactionId,
             'transactionInfo'   => $this->transactionInfo,
+            'acceptance'        => $this->acceptance,
         ];
         $this->dispatch('confirm-order-Checkout', $data);
     }

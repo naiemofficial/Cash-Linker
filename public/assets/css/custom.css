@@ -179,3 +179,9 @@
 .ordered-products .itemlist-wrapper {
     overflow-y: auto;
 }
+
+
+.checkout-sidebar .proceed-checkout {
+    padding-left: 0;
+    padding-right: 0;
+}

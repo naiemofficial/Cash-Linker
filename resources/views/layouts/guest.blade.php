@@ -25,11 +25,14 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <script type="text/javascript" src="{{ url('/assets/js/custom.js') }}"></script>
     </head>
-    <body class="font-sans text-gray-900 antialiased bg-gray-100">
+    <body class="font-sans text-gray-900 antialiased bg-gray-100 min-h-screen flex flex-col">
         <x-guest.header />
         <section section="hero">{{ $hero ?? '' }}</section>
-        <div class="max-w-[1400px] mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ $slot }}
+        <div class="max-w-[1400px] w-full mx-auto py-6 px-4 sm:px-6 lg:px-8 min-h-full min-w-[500px] flex flex-col flex-1 justify-center">
+            <div class="content-main w-full">
+                {{ $slot }}
+            </div>
         </div>
+        <x-guest.footer />
     </body>
 </html>

@@ -1,10 +1,11 @@
 <x-guest-layout>
-    <div class="max-w-md mx-auto">
-        <h2 class="font-semibold mb-3 text-3xl uppercase text-center">Login</h2>
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+    <div>
+        <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
+            <h2 class="font-semibold mb-3 text-3xl uppercase text-center">Login</h2>
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <!-- Email Address -->
@@ -19,9 +20,9 @@
                     <x-input-label for="password" :value="__('Password')" />
 
                     <x-text-input id="password" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password"
-                                    required autocomplete="current-password" />
+                                  type="password"
+                                  name="password"
+                                  required autocomplete="current-password" />
 
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
@@ -46,5 +47,7 @@
                     </x-primary-button>
                 </div>
             </form>
+        </div>
+        <div class="text-center mt-5 text-sm"><span class="">Not a registered user?</span> <br> <a href="{{ route('register') }}" class="text-blue-600">Register Here</a></div>
     </div>
 </x-guest-layout>
