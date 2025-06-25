@@ -185,3 +185,11 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+
+.summary-homepage .h-screen {
+    height: 100%;
+}
+.summary-homepage .itemlist-wrapper {
+    height: calc(100% - 152px)
+}

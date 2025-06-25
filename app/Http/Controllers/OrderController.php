@@ -86,10 +86,8 @@ class OrderController extends Controller
                 ]);
 
                 $user_validated['password'] = bcrypt($user_validated['password']);
-
-                $User = User::create($user_validated);
-                Auth::login($User);
             } else {
+                $user_validated = [];
                 $User = Auth::user();
             }
 
@@ -126,6 +124,18 @@ class OrderController extends Controller
             ]);
 
 
+
+
+            // All the fields checking has been completed, NOW => Next
+            // Create User
+            if(!Auth::check()){
+                $User = User::create($user_validated);
+                Auth::login($User);
+            }
+
+
+
+
             // Get all cart products for snapshot
             $productIds = array_column($validated['products'], 'id');
             $products = Product::findMany($productIds)->toArray();
@@ -150,6 +160,7 @@ class OrderController extends Controller
                 'payment_info' => $validated_payment_info
             ];
 
+            // Create Order
             $Order = Order::create($product_data);
             Cart::destroy();
 
@@ -190,6 +201,7 @@ class OrderController extends Controller
     private function createLog($orderId, $data = []){
         $log_data = $data;
         $log_data['order_id'] = $orderId;
+        $log_data['user_id'] = Auth::user()->id;
 
         try {
             OrderLog::create($log_data);
@@ -218,6 +230,15 @@ class OrderController extends Controller
                     return in_array($order->status, $restricted_statuses);
                 }), 'nullable', 'string'],
             ]);
+
+            // Prevent Status update by Customer
+            if(Auth::user()->role() == 'customer'){
+                if(empty($validated['status']) || $validated['status'] !== 'cancelled'){
+                    return response()->json([
+                        'error' => 'Order cannot be updated'
+                    ]);
+                }
+            }
 
             $isSameStatus = ($order->status === $validated['status']);
             if(isset($validated['status']) &&  $isSameStatus && empty($validated['note'])){

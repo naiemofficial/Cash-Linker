@@ -4,7 +4,7 @@
             <div class="flex flex-wrap justify-between items-center w-full">
                 <a href="{{ route('home') }}" class="flex items-center">
                     <img src="{{ url('/assets/images/icon/money.png') }}" class="mr-3 h-6 sm:h-9" alt="Money Logo" />
-                    <span class="self-center text-3xl font-semibold whitespace-nowrap text-gray-900" style="font-family: 'Rubik Microbe', sans-serif;">Money Commerce</span>
+                    <span class="self-center text-3xl font-semibold whitespace-nowrap text-gray-900" style="font-family: 'Rubik Microbe', sans-serif;">{{ config('app.name') }}</span>
                 </a>
 
                 <x-guest.navigation />

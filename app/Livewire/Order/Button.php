@@ -16,6 +16,8 @@ class Button extends Component
     public $order = null;
     public $form = 'add';
 
+    public $showButton = false;
+
 
     public function mount(){
         $this->status = $this->order->status;
@@ -48,12 +50,20 @@ class Button extends Component
     }
 
 
+    public function updatedStatus(){
+        $this->showButton = (Auth::user()->role() == 'administrator' || $this->status == 'cancelled');;
+    }
+
+
     public function submit(): void {
         $this->dispatch('order-form-submitted');
     }
 
     public function render()
     {
+        if(in_array($this->order?->status, ['cancelled', 'delivered'])){
+            $this->showButton = false;
+        }
         return view('livewire.order.button');
     }
 }

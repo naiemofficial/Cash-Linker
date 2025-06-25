@@ -18,9 +18,9 @@ return new class extends Migration
             $table->id();
             $table->enum('origin', $countries)->default('Bangladesh');
             $table->string('name');
-            $table->enum('value', [1, 2, 5, 10, 20, 50, 100, 500, 1000])->default(10);
+            $table->enum('value', [0.1, 0.25, 0.50, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000])->default(10);
             $table->enum('category', ['regular', 'memorial'])->default('regular');
-            $table->enum('type', ['note', 'bundle', 'penny', 'penny-stack'])->default('note');
+            $table->enum('type', ['note', 'bundle', 'coin', 'coin-stack'])->default('note');
             $table->integer('year')->nullable();
             $table->integer('price')->nullable();
             $table->integer('commission')->nullable();

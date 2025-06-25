@@ -11,7 +11,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="w-[30%] bg-white shadow-sm sm:rounded-lg flex flex-col flex-1 overflow-hidden">
+            <div class="w-[30%] bg-white shadow-sm sm:rounded-lg flex flex-col flex-1 overflow-hidden summary-homepage">
                 <livewire:order.summary heading="false" />
             </div>
         </div>

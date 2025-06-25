@@ -9,7 +9,8 @@ class OrderLog extends Model
     protected $fillable = [
         'order_id',
         'status',
-        'note'
+        'note',
+        'user_id'
     ];
     protected static function boot()
     {
@@ -23,7 +24,11 @@ class OrderLog extends Model
     }
 
     public function order(){
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class)->first();
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class)->first();
     }
 
 }

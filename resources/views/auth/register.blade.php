@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
+    <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-2xl">
         <h2 class="font-semibold mb-3 text-3xl uppercase text-center">Register</h2>
         <form method="POST" action="{{ route('register') }}">
             @csrf

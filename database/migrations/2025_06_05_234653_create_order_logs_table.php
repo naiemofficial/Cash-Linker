@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Order::class)->constrained()->cascadeOnDelete();
             $table->enum('status', ['pending', 'processing', 'completed', 'courier', 'delivered', 'cancelled'])->nullable()->default(null);
             $table->text('note')->nullable();
+            $table->foreignId(User::class)->constrained();
             $table->timestamps();
         });
     }

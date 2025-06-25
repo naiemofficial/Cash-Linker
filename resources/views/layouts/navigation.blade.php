@@ -10,12 +10,15 @@
                     </a>
                 </div>
 
+                <!-- Application Name -->
+                <div class="self-center text-3xl font-semibold whitespace-nowrap text-gray-900 ml-3" style="font-family: 'Rubik Microbe', sans-serif;">{{ config('app.name') }}</div>
+
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{--<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
+                </div>--}}
             </div>
 
             <!-- Settings Dropdown -->

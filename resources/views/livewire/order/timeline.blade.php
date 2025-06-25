@@ -20,6 +20,9 @@
             @if(!empty($log->note))
                 <p class="{{ !empty($log->status) ? 'mb-4' : '' }} text-xs font-normal text-gray-500">{{ $log->note }}</p>
             @endif
+            @if($log->status === 'cancelled' && auth()->user()->role() === 'administrator')
+                <span class="text-xs text-gray-400">- by {{ $log->user()->name }} ({{ $log->user()->role() }})</span>
+            @endif
         </li>
     @endforeach
     <li class="mb-10 ms-4">

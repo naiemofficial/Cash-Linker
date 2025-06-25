@@ -7,7 +7,7 @@
                         <img src="{{ url('/assets/images/icon/money.png') }}" class="h-5" alt="Money Logo" />
                         <h3 class="font-bold uppercase">{{ config('app.name') }}</h3>
                     </div>
-                    <p class="text-sm text-justify">Elevate your gifting and collecting experience with Money Commerce. Explore our curated range of fresh, rare banknotes, perfect for any occasion. Enjoy the convenience of online shopping with a focus on authenticity and quality.</p>
+                    <p class="text-sm text-justify">Elevate your gifting and collecting experience with <strong class="font-semibold">{{ config('app.name') }}</strong>. Explore our curated range of fresh, rare banknotes, perfect for any occasion. Enjoy the convenience of online shopping with a focus on authenticity and quality.</p>
                 </div>
                 <div class="flex items-center">
                     <div class="inline-flex space-x-3 justify-center">
@@ -48,8 +48,9 @@
 
     <aside class="bg-gray-800 mx-auto">
         <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center text-white text-sm font-semibold py-3">
-            <div class="px-4 lg:px-6 py-2.5">
+            <div class="px-4 lg:px-6 py-2.5 flex flex-row justify-between">
                 <p>Copyright © {{ date('Y') }} - All right reserved by {{ config('app.name') }}</p>
+                <span>Developed by <a href="https://github.com/naiemofficial" target="_blank" class="text-blue-400 hover:text-blue-300 hover:underline">Naiem</a></span>
             </div>
         </div>
     </aside>

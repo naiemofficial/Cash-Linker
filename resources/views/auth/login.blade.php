@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div>
-        <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
+        <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-2xl">
             <h2 class="font-semibold mb-3 text-3xl uppercase text-center">Login</h2>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />

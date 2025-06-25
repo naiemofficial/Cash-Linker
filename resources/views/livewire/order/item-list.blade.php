@@ -59,7 +59,7 @@
                                 class="text-lg w-[18px] inline-flex items-center justify-center">
                                 <i :class="isOpen ? 'fa-solid fa-circle-caret-up text-blue-600' : 'fa-solid fa-circle-caret-down text-gray-700'" class="pointer-events-none"></i>
                             </button>
-                            <div class="inline-flex w-12 {{ str_contains($product_type, 'penny') ? 'h-12' : 'h-auto min-h-6' }} rounded-sm bg-gray-100 border border-gray-200 items-center justify-center">
+                            <div class="inline-flex w-12 {{ str_contains($product_type, 'coin') ? 'h-12 p-0.5 rounded-full' : 'h-auto min-h-6 rounded-sm' }} bg-gray-100 border border-gray-200 items-center justify-center">
                                 @if(empty($product_image))
                                     <i class="fa-solid fa-image text-gray-400"></i>
                                 @else

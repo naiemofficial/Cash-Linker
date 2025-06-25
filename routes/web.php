@@ -54,7 +54,6 @@ Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard
 
     Route::get('/orders/trash', [OrderController::class, 'index'])->name('order.index.trash');
     Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
-    Route::get('/order/edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
     Route::get('/order/delete/{order}/{redirect?}', [OrderController::class, 'destroy'])->name('order.delete');
     Route::get('/order/delete/permanent/{order}/{redirect?}', [OrderController::class, 'destroyPermanent'])->name('order.deletePermanent');
     Route::get('/order/restore/{order}/{redirect?}', [OrderController::class, 'restore'])->name('order.restore');

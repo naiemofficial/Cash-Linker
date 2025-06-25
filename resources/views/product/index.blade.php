@@ -25,7 +25,7 @@
                 <thead class="sticky top-0">
                     <tr>
                         <th class="bg-white px-5 py-4 border-b-2 border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
-                            Image
+                            Images
                         </th>
                         <th class="bg-white px-5 py-4 border-b-2 border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left min-w-[150px]">
                             Product Name
@@ -57,7 +57,7 @@
                     @foreach($products as $product)
                         <tr>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
-                                <div class="inline-flex w-16 {{ str_contains($product->type, 'penny') ? 'h-16' : 'h-auto min-h-8'  }} rounded-sm bg-gray-100 border border-gray-200 items-center justify-center">
+                                <div class="inline-flex w-16 {{ str_contains($product->type, 'coin') ? 'h-16' : 'h-auto min-h-8'  }} rounded-sm bg-gray-100 border border-gray-200 items-center justify-center">
                                     @if(empty($product->image))
                                         <i class="fa-solid fa-image text-gray-400"></i>
                                     @else
