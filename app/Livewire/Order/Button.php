@@ -20,6 +20,7 @@ class Button extends Component
 
 
     public function mount(){
+        $this->showButton = Auth::user()->role() === 'administrator' ? true : false;
         $this->status = $this->order->status;
     }
 

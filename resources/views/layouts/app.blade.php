@@ -21,6 +21,8 @@
         <link href="{{ url('/assets/css/custom.css') }}" rel="stylesheet">
 
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
         <script type="text/javascript" src="{{ url('/assets/js/custom.js') }}"></script>
     </head>
     <body class="dashboard font-sans antialiased min-h-screen">

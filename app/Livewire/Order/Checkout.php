@@ -39,6 +39,13 @@ class Checkout extends Component
     public $orderId = null;
 
     public function mount() {
+        // If User Logged in
+        if(Auth::check()){
+            $this->name     = Auth::user()->name;
+            $this->email    = Auth::user()->email;
+            $this->phone    = Auth::user()->phone;
+        }
+
         $this->cartCount = Cart::count();
         $this->deliveryMethods = DeliveryMethod::where('status', 'active')->get();
         $this->paymentMethods = PaymentMethod::where('status', 'active')->get();

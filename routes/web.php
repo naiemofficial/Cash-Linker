@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeliveryMethodController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentMethodController;
@@ -13,15 +14,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
-    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
-    Route::get('/order/edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
+
+Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+    Route::get('/',                     [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+    Route::get('/orders',               [OrderController::class, 'index'])->name('order.index');
+    Route::get('/order/edit/{order}',   [OrderController::class, 'edit'])->name('order.edit');
 });
-Route::middleware(['auth', 'verified', 'role:administrator'])->prefix('dashboard')->group(function () {
+
+Route::middleware(['auth', 'role:administrator'])->prefix('dashboard')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
     Route::get('/filemanager', function (){
