@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Order::class)->constrained()->cascadeOnDelete();
             $table->enum('status', ['pending', 'processing', 'completed', 'courier', 'delivered', 'cancelled'])->nullable()->default(null);
             $table->text('note')->nullable();
-            $table->foreignId(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });
     }
