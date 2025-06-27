@@ -19,7 +19,7 @@ class PaymentMethodSeeder extends Seeder
             'type'          => 'mfs',
             'category'      => 'merchant',
             'account_no'    => '01700000000',
-            'account_name'  => 'Money Commerce',
+            'account_name'  => config('app.name'),
         ]);
 
         PaymentMethod::create([
@@ -37,7 +37,7 @@ class PaymentMethodSeeder extends Seeder
             'type'          => 'bank',
             'category'      => 'business',
             'account_no'    => '12345678910',
-            'account_name'  => 'Money Commerce',
+            'account_name'  => config('app.name'),
             'swift_code'    => 'BALBBDDH_X_',
         ]);
     }

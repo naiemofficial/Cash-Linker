@@ -57,13 +57,23 @@
                     @foreach($products as $product)
                         <tr>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-center">
-                                <div class="inline-flex w-16 {{ str_contains($product->type, 'coin') ? 'h-16' : 'h-auto min-h-8'  }} rounded-sm bg-gray-100 border border-gray-200 items-center justify-center">
-                                    @if(empty($product->image))
-                                        <i class="fa-solid fa-image text-gray-400"></i>
-                                    @else
-                                        <img class="w-full h-full object-cover" src="{{ $product->image }}" alt="{{ $product->name }}">
-                                    @endif
-                                </div>
+                                @if($product->type == 'coin')
+                                    <div class="inline-flex w-16 h-16 p-0.5 rounded-full bg-gray-100 border border-gray-200 items-center justify-center">
+                                        @if(empty($product->image))
+                                            <i class="fa-solid fa-image text-gray-400"></i>
+                                        @else
+                                            <img class="w-full h-auto object-cover" src="{{ $product->image }}" alt="{{ $product->name }}">
+                                        @endif
+                                    </div>
+                                @else
+                                    <div class="inline-flex w-16 h-auto min-h-8 rounded-sm bg-gray-100 border border-gray-200 items-center justify-center">
+                                        @if(empty($product->image))
+                                            <i class="fa-solid fa-image text-gray-400"></i>
+                                        @else
+                                            <img class="w-full h-full object-cover" src="{{ $product->image }}" alt="{{ $product->name }}">
+                                        @endif
+                                    </div>
+                                @endif
                             </td>
                             <td class="px-5 py-2 border-b border-gray-200 bg-white text-sm text-left">
                                 {{ $product->name }}

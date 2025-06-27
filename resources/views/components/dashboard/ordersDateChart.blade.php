@@ -146,9 +146,8 @@
             tooltip: {
                 theme: 'light',
                 x: {
-                    // The tooltip formatter also returns the category value, as it's already formatted
-                    formatter: function (val) {
-                        return val;
+                    formatter: function (val, { dataPointIndex }) { // Destructure dataPointIndex
+                        return categories[dataPointIndex]; // Access the formatted date from categories
                     }
                 },
                 y: {
