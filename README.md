@@ -1,61 +1,19 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Cash Linker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Cash Linker is an e-commerce platform designed for enthusiasts of fresh banknotes and rare currencies. Perfect for festivals and special occasions, it provides a wide range of collectible items, including memorial notes, coins, and foreign currencies. With an intuitive interface and dynamic features powered by Laravel and Livewire, Cash Linker ensures a seamless user experience while maintaining a clean and efficient codebase. It’s the ideal platform for both gifting and collecting unique currency items.
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![1  Home](https://github.com/user-attachments/assets/7f90170c-c1a3-459b-9d26-bb2f08f2e130)
+![2  Checkout](https://github.com/user-attachments/assets/614a7468-deb8-47a9-8c06-43ee3ab18724)
+![3  Order-Summary](https://github.com/user-attachments/assets/42719666-b7f7-4291-afb1-145d5d2b53f5)
+![4  Dashboard](https://github.com/user-attachments/assets/d11e6f21-f8ae-42ce-97d0-c4c59936adac)
+![5  Products](https://github.com/user-attachments/assets/e5251226-71c3-47e6-917e-8713da4461f8)
+![6  Add-Product](https://github.com/user-attachments/assets/349c08f5-0233-4f80-b01a-2e09a18f614a)
+![7  Edit-Product](https://github.com/user-attachments/assets/43e06130-ca11-4f47-8895-cdeb85cd37e6)
+![8  Delivery-Methods](https://github.com/user-attachments/assets/04044e46-29b3-4890-aee9-a27a386372fb)
+![9  Edit-Delivery-Method](https://github.com/user-attachments/assets/f826cf76-c0fa-414c-9103-acd1ca624262)
+![10  Payment-Methods](https://github.com/user-attachments/assets/6cd510ea-e4d7-43ec-acfc-09ad57dd1051)
+![11  Add-Paymnet-Method](https://github.com/user-attachments/assets/ab01608b-f1ab-40b3-812b-072b0172f3f0)
+![12  Edit-Payment-Method](https://github.com/user-attachments/assets/e4343285-51d0-4b9b-a563-0edc32e3f9f4)
+![13  Orders](https://github.com/user-attachments/assets/2f7f235a-d54c-4b7f-8662-cd8c5c02013e)
+![14  Add-Order](https://github.com/user-attachments/assets/d266c03f-1595-412b-85a8-d6a9cb5123ca)
+![15  Edit-Order](https://github.com/user-attachments/assets/29e155f3-7b96-4035-b3d4-5675ec2b1461)
