@@ -11,6 +11,12 @@
                 </div>
                 <div class="flex items-center">
                     <div class="inline-flex space-x-3 justify-center">
+                        <!-- Github -->
+                        <a href="https://github.com/naiemofficial/Cash-Linker" target="_blank"
+                           class="flex items-center justify-center w-6 h-6  rounded-full bg-white text-gray-700 hover:bg-blue-600 hover:text-white transition-colors">
+                            <i class="fab fa-github text-xs"></i>
+                        </a>
+
                         <!-- Facebook -->
                         <a href="https://facebook.com" target="_blank"
                            class="flex items-center justify-center w-6 h-6  rounded-full bg-white text-gray-700 hover:bg-blue-600 hover:text-white transition-colors">
