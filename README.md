@@ -1,4 +1,4 @@
-# Cash Linker
+# <img width="30" height="30" alt="money" src="https://github.com/user-attachments/assets/cceccefb-8f27-453d-9e66-a235e6ac8a8f" /> Cash Linker 
 
 Cash Linker is an e-commerce platform designed for enthusiasts of fresh banknotes and rare currencies. Perfect for festivals and special occasions, it provides a wide range of collectible items, including memorial notes, coins, and foreign currencies. With an intuitive interface and dynamic features powered by Laravel and Livewire, Cash Linker ensures a seamless user experience while maintaining a clean and efficient codebase. It’s the ideal platform for both gifting and collecting unique currency items.
 
